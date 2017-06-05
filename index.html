@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head ng-app="PinItApp">
+	<title>PinIt</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="./lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+    <div ng-include="'partials/navbar.html'"></div>
+
+    <div ng-view></div>
+
+	<!-- third Party JS -->
+	<script type="text/javascript" src="./lib/node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="./lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./lib/node_modules/angular/angular.min.js"></script>
+  <script type="text/javascript" src="./lib/node_modules/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="./lib/node_modules/firebase/firebase.js"></script>
+
+  <!-- App Specific JS -->
+  <script type="text/javascript" src="./app/app.js"></script>
+  <script type="text/javascript" src="./app/values/fbcreds.js"></script>
+  	<!--Factories-->
+  <script type="text/javascript" src="./app/factories/authFactory.js"></script>
+  <script type="text/javascript" src="./app/factories/dataFactory.js"></script>
+  <script type="text/javascript" src="./app/factories/searchFactory.js"></script>  
+  	<!--Controllers-->
+  <script type="text/javascript" src="./app/controllers/AllPin.js"></script>
+  <script type="text/javascript" src="./app/controllers/AuthCtrl.js"></script>
+  <script type="text/javascript" src="./app/controllers/BoardDetailCtrl.js"></script>
+  <script type="text/javascript" src="./app/controllers/BoardFormCtrl.js"></script>
+  <script type="text/javascript" src="./app/controllers/NavCtrl.js"></script>
+  <script type="text/javascript" src="./app/controllers/PinCtrl.js"></script>
+  <script type="text/javascript" src="./app/controllers/PinFormCtrl.js"></script>
+  <script type="text/javascript" src="./app/controllers/UserBoardCtrl.js"></script>
+
+</body>
+</html>
