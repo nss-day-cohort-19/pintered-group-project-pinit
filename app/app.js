@@ -18,7 +18,7 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/login.html",
         controller: "AuthCtrl"
     })
-    .when("/AllPins",{
+    .when("/allPins",{
         templateUrl: "partials/allPins.html",
         controller: "AllPinCtrl"
     })
@@ -40,7 +40,7 @@ app.config(($routeProvider)=>{
     })
     .when("/boards/:boardId/edit",{
         templateUrl: "partials/boardForm",
-        controller: "EditCtrl"
+        controller: "editCtrl"
     })
     .when("/boards/:boardId/:pinId",{
         templateUrl: "partials/boardDetail.html",
@@ -49,6 +49,10 @@ app.config(($routeProvider)=>{
     .when("/boards/:boardId/:pinId/edit",{
         templateUrl: "partials/pinForm.html",
         controller:  "editCtrl"
+    })
+    .when("/:pinId/edit",{
+        templateUrl: "partials/pinForm.html",
+        controller: "editCtrl"
     })
     .otherwise("/");
 });
