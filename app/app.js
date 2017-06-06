@@ -53,6 +53,7 @@ app.config(($routeProvider)=>{
     .otherwise("/");
 });
 
+
 app.run(($location, fbcreds)=>{
    let cred = fbcreds;
    let authConfig = {
@@ -60,4 +61,6 @@ app.run(($location, fbcreds)=>{
     authDomain: cred.authDomain,
     databaseURL: cred.databaseUrl
    };
+
+   firebase.initializeApp(authConfig);
 });
