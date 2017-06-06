@@ -1,6 +1,6 @@
 "use strict";
 
-const app= angular.module("PinItApp", ["ngRoute"]);
+const app = angular.module("PinItApp", ["ngRoute"]);
 
 
 
@@ -8,7 +8,7 @@ app.config(($routeProvider)=>{
     $routeProvider
     .when("/",{
         templateUrl: "partials/allPins.html",
-        controller: "AllPin"
+        controller: "AllPinCtrl"
     })
     .when("/login", {
         templateUrl: "partials/login.html",
@@ -51,8 +51,8 @@ app.config(($routeProvider)=>{
 
 
 app.run(($location, fbcreds)=>{
-   let cred= fbcreds;
-   let authConfig={
+   let cred = fbcreds;
+   let authConfig = {
     apiKey: cred.apiKey,
     authDomain: cred.authDomain,
     databaseURL: cred.databaseUrl
