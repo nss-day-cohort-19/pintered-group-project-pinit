@@ -1,5 +1,6 @@
 "use strict";
 
+
 app.factory("DataFactory", function($q,$http,fbcreds){
 
 	const makePin = ( newObj ) => {
@@ -46,6 +47,14 @@ app.factory("DataFactory", function($q,$http,fbcreds){
       $http.delete(`${FBCreds.databaseURL}/pins/${pinID}.json`)
       .then( (response) => {
         resolve(response);
+
+  const makeBoard = ( newObj ) => {
+    return $q( (resolve, reject) => {
+      let object = JSON.stringify(newObj);
+      $http.post(`${fbcreds.databaseURL}/boards.json`, object)
+      .then ( (itemID) => {
+        resolve(itemID);
+
       })
       .catch( (error) => {
         reject(error);
@@ -54,10 +63,13 @@ app.factory("DataFactory", function($q,$http,fbcreds){
   };
 
   return {
+
     makePin,
     editPin,
     getPins,
-    removePin
+    removePin,
+    makeBoard
+
   };
 
 });
