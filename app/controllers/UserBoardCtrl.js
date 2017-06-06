@@ -2,11 +2,13 @@
 
 app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
     let user = AuthFactory.getUser();
+    user = "";
 
     $scope.getBoards = () => {
         DataFactory.getBoards(user)
         .then( (boards) => {
             $scope.userBoards = boards.data;
+            console.log($scope.userBoards);
             // for(x in $scope.boards){
             //     DataFactory.getPins(x)
             //     .then( (pins) => {
@@ -17,7 +19,7 @@ app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
     };
 
     $scope.removeBoard = (boardId) => {
-        DataFactory.deleteBoard(user, boardId)
+        DataFactory.deleteBoard(boardId)
         .then( (response) => {
             $scope.getBoards(user);
         });
