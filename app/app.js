@@ -16,7 +16,7 @@ app.config(($routeProvider)=>{
     $routeProvider
     .when("/",{
         templateUrl: "partials/allPins.html",
-        controller: "AllPin"
+        controller: "AllPinCtrl"
     })
     .when("/login", {
         templateUrl: "partials/login.html",
