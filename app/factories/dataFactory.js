@@ -1,6 +1,5 @@
 "use strict";
 
-
 app.factory("DataFactory", function($q,$http,fbcreds){
 
 	const deleteBoard = (boardId) => {
@@ -45,7 +44,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
   };
 
   
-  const editPin = ( pinID, editedObj ) => {
+  const editPin = (pinID, editedObj) => {
     return $q( (resolve, reject) => {
       let newObj = JSON.stringify(editedObj);
       $http.patch(`${fbcreds.databaseURL}/pins/${pinID}.json`, newObj)
@@ -71,7 +70,19 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
-  const removePin = ( pinID ) => {
+  const getPin = (pinID) => {
+    return $q( (resolve, reject) => {
+      $http.get(`${fbcreds.databaseURL}/pins/${pinID}.json`)
+      .then( (pinObj) => {
+        resolve(pinObj.data);
+      })
+      .catch( (error) => {
+        reject(error);
+      });
+    });
+  };
+
+  const removePin = (pinID) => {
     return $q ( (resolve, reject) => {
       $http.delete(`${fbcreds.databaseURL}/pins/${pinID}.json`)
       .then( (response) => {
@@ -103,9 +114,9 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     makePin,
     editPin,
     getPins,
+    getPin,
     removePin,
     makeBoard
-
   };
 
 });
