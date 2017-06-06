@@ -2,7 +2,35 @@
 
 app.factory("DataFactory", function($q,$http,fbcreds){
 
-	const makePin = (newObj) => {
+	const deleteBoard = (boardId) => {
+        return $q((resolve, reject) => {
+            $http.delete(`${fbcreds.databaseURL}/boards/${boardId}.json?`)
+            .then( (response) => {
+                resolve(response);
+            }).catch( (response) => {
+                reject(response);
+            });
+        });
+    };
+
+    const getBoards = (user) => {
+        let boards = [];
+        return $q((resolve, reject) => {
+            $http.get(`${fbcreds.databaseURL}/boards.json?orderBy="uid"&equalTo="${user}`)
+            .then((boardsObj) => {
+                let boardsCollection = boardsObj.data;
+                Object.keys(boardsCollection).forEach((key) => {
+                    boardsCollection[key].id = key;
+                    boards.push(boardsCollection[key]);
+                });
+                resolve(boards);
+            }).catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+	const makePin = ( newObj ) => {
     return $q( (resolve, reject) => {
       let object = JSON.stringify(newObj);
       $http.post(`${fbcreds.databaseURL}/pins.json`, object)
@@ -82,6 +110,8 @@ app.factory("DataFactory", function($q,$http,fbcreds){
   };
 
   return {
+    getBoards,
+    deleteBoard,
     makePin,
     editPin,
     getPins,
