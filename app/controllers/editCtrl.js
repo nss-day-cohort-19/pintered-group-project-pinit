@@ -1,27 +1,31 @@
 "use strict";
-app.controller('EditCtrl', function($scope, $routeParams, DataFactory, $location) {
 
-    $scope.board = {
-        title: "",
-        description: "",
-        uid: ""
-    };
-    ///boards/:boardId/edit
-    DataFactory.getBoard($routeParams.boardId)
-        .then((stuff) => {
-            $scope.board = stuff.data;
-            $scope.board.id = $routeParams.boardId;
-            console.log(stuff);
+app.controller('editCtrl', function($scope, $routeParams, DataFactory, $location) {
 
-        });
+  $scope.pin = {
+  	uid:"",
+    url: "",
+    name: "",
+    description: "",
+    user_text: "",
+    board_id:"",
+    tags:""
+  };
 
-    //use $routeParams to get the board from firebas.
-    $scope.makeBoard = function() {
-        DataFactory.editBoard($routeParams.boardId, $scope.board)
-            .then((response) => {
-                $location.path("/boards");
+	DataFactory.getPin($routeParams.pinId)
+	.then( (stuff) => {
+		$scope.pin = stuff;
+		$scope.pin.id = $routeParams.pinId;
+	});
 
-            });
-        console.log("You clicked the edit board button!");
-    };
+  $scope.submitPin = function() {
+    // stuff goes here
+    DataFactory.editPin($routeParams.pinId, $scope.pin)
+    .then( (response) => {
+    	$location.path("/");
+    });
+    console.log("pin", $scope.pin);
+    console.log("You clicked the edit pin button!");
+  };
 });
+
