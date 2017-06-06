@@ -1,0 +1,28 @@
+<nav ng-controller="NavCtrl" class="navbar colorBG navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img class="PinIt" src="http://2.bp.blogspot.com/-Kt70O7voGv4/U9mz7M58eiI/AAAAAAAADEc/0cBmOvQQhXA/s1600/Logo+Pin_it.png"></a>
+    </div>
+
+      <div class="input-group col-xs-4 col-xs-offset-2" ng-show="isLoggedIn">
+    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+    <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1" ng-model="searchText.search">
+  </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ng-href="#!/AllPins">Explore</a></li>
+        <li><a ng-href="#!/boards">Profile</a></li>
+        <li><a ng-href="#!/login" ng-show="!isLoggedIn">Login</a></li>
+        <li><a ng-show="isLoggedIn" ng-href="#!/logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
