@@ -94,24 +94,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
-  const getBoardPins = ( boardID ) => {
-    return $q( (resolve, reject) => {
-      $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="board_id"&equalTo="${boardID}"`)
-      .then( (itemObj) => {
-        // console.log("itemObj", itemObj);
-        let itemsArray = [];
-        for (let object in itemObj.data){
-          // itemObj.data[object].pinID = object;
-          // console.log(itemObj.data[object]);
-          itemsArray.push(itemObj.data[object]);
-        }
-        resolve(itemsArray);
-      })
-      .catch( (error) => {
-        reject(error);
-      });
-    });
-  };
+
 
   //gets a single pin on a board
   const getPin = (pinID) => {
@@ -163,8 +146,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     getPins,
     getPin,
     removePin,
-    makeBoard,
-    getBoardPins
+    makeBoard
   };
 
 });

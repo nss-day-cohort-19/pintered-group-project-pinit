@@ -27,7 +27,7 @@ app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
     $scope.removeBoard = (boardId) => {
         DataFactory.deleteBoard(boardId)
         .then( (response) => {
-            $scope.getBoards(user);
+            $scope.getBoards();
         });
     };
 
