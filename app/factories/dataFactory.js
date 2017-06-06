@@ -15,9 +15,9 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
     });
   };
 
-  const getBoard = ( boardID ) => {
+  const getPins = ( boardID ) => {
     return $q( (resolve, reject) => {
-      $http.get(`${fbcreds.databaseURL}/boards/${boardID}.json`)
+      $http.get(`${fbcreds.databaseURL}/pins/${boardID}.json`)
       .then( (itemObj) => {
         resolve(itemObj.data);
       })
