@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("PinFormCtrl", function($scope, DataFactory, $location){
+app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routeParams){
   $scope.pin = {
   	uid:"",
     url: "",
@@ -10,6 +10,15 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location){
     board_id:"",
     tags:""
   };
+console.log("routeParams.pinid is", $routeParams.pinId);
+  DataFactory.getPin($routeParams.pinId)
+  .then( (stuff) => {
+    $scope.pin = stuff;
+    console.log("what is stuff", stuff);
+    console.log("and the scope of stuff is", $scope.pin);
+    $scope.pin.id = $routeParams.pinId;
+  });
+
 
   $scope.submitPin = function () {
 
@@ -21,4 +30,5 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location){
   };
 
 });
+
 
