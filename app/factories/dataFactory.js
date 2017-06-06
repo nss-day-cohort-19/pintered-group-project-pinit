@@ -13,10 +13,10 @@ app.factory("DataFactory", function($q,$http,fbcreds){
         });
     };
 
-    const getBoards = (user) => {
+    const getBoards = () => {
         let boards = [];
         return $q((resolve, reject) => {
-            $http.get(`${fbcreds.databaseURL}/boards.json?orderBy="uid"&equalTo="${user}`)
+            $http.get(`${fbcreds.databaseURL}/boards.json`)
             .then((boardsObj) => {
                 let boardsCollection = boardsObj.data;
                 Object.keys(boardsCollection).forEach((key) => {
@@ -77,7 +77,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
         // console.log("itemObj", itemObj);
         let itemsArray = [];
         for (let object in itemObj.data){
-          itemObj.data[object].pinID = object;
+          // itemObj.data[object].pinID = object;
           // console.log(itemObj.data[object]);
           itemsArray.push(itemObj.data[object]);
         }

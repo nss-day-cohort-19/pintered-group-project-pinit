@@ -18,11 +18,9 @@
   </div>
   <div class="form-group">
     <label>Boards</label>
-    <select class="form-control" ng-model="pin.boards">
-      <option value="board1">Board 1</option>
-      <option value="board2">Board 2</option>
-      <option value="board3">Board 3</option>
-      <option value="board4">Board 4</option>
+    <select class="form-control" ng-model="pin.board_id">
+      <option value="{{item.id}}" ng-repeat="item in boards" id="{{item.id}}">{{item.title}}</option>
+      <option value="board2">Create Board</option>
     </select>
   </div>
   <div class="form-group">
