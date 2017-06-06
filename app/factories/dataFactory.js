@@ -74,11 +74,18 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
- 
+  //gets all pins, this is visible when you come to page in the beginning
   const getPins = () => {
+    let x=[];
     return $q( (resolve, reject) => {
       $http.get(`${fbcreds.databaseURL}/pins.json`)
       .then( (pinObj) => {
+        
+        let itemObj= pinObj.data;
+        Object.keys(itemObj).forEach((key)=>{
+          itemObj[key].id= key;
+          x.push(itemObj[key]);
+        });
         resolve(pinObj.data);
       })
       .catch( (error) => {
@@ -87,7 +94,28 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
+  const getBoardPins = ( boardID ) => {
+    return $q( (resolve, reject) => {
+      $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="board_id"&equalTo="${boardID}"`)
+      .then( (itemObj) => {
+        // console.log("itemObj", itemObj);
+        let itemsArray = [];
+        for (let object in itemObj.data){
+          // itemObj.data[object].pinID = object;
+          // console.log(itemObj.data[object]);
+          itemsArray.push(itemObj.data[object]);
+        }
+        resolve(itemsArray);
+      })
+      .catch( (error) => {
+        reject(error);
+      });
+    });
+  };
+
+  //gets a single pin on a board
   const getPin = (pinID) => {
+    console.log("pinID is", pinID);
     return $q( (resolve, reject) => {
       $http.get(`${fbcreds.databaseURL}/pins/${pinID}.json`)
       .then( (pinObj) => {
@@ -111,7 +139,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
-  const makeBoard = ( newObj ) => {
+  const makeBoard = (newObj) => {
     return $q( (resolve, reject) => {
       let object = JSON.stringify(newObj);
       $http.post(`${fbcreds.databaseURL}/boards.json`, object)
@@ -125,6 +153,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
+
   return {
     getBoardPins,
     getBoards,
@@ -134,7 +163,8 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     getPins,
     getPin,
     removePin,
-    makeBoard
+    makeBoard,
+    getBoardPins
   };
 
 });

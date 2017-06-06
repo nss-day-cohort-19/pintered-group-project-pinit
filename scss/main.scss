@@ -6,6 +6,10 @@ h1, h2 {
   text-align: center;
 }
 
+.smallPin {
+  max-width: 250px;
+}
+
 .main-container {
   border: 2px dashed red;
 }
@@ -40,6 +44,7 @@ h1, h2 {
   background-color: #85C1F5;
 }
 
+
 .userBoards{
   * {
     padding: 0 0 0 0;
@@ -62,3 +67,8 @@ h1, h2 {
   }
 
 }
+
+.smallPin{
+  max-width: 250px;
+}
+
