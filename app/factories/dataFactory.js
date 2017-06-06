@@ -13,10 +13,27 @@ app.factory("DataFactory", function($q,$http,fbcreds){
         });
     };
 
+    const getBoardPins = (boardId) => {
+        let pins = [];
+        return $q((resolve, reject) => {
+            $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="board_id"&equalTo="${boardId}"`)
+            .then((pinsObj) => {
+                let pinCollection = pinsObj.data;
+                Object.keys(pinCollection).forEach((key) => {
+                    pinCollection[key].id = key;
+                    pins.push(pinCollection[key]);
+                });
+                resolve(pins);
+            }).catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
     const getBoards = () => {
         let boards = [];
         return $q((resolve, reject) => {
-            $http.get(`${fbcreds.databaseURL}/boards.json`)
+            $http.get(`${fbcreds.databaseURL}/boards.json`)  //?orderBy="uid"&equalTo="${user}"
             .then((boardsObj) => {
                 let boardsCollection = boardsObj.data;
                 Object.keys(boardsCollection).forEach((key) => {
@@ -77,24 +94,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
-  const getBoardPins = ( boardID ) => {
-    return $q( (resolve, reject) => {
-      $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="board_id"&equalTo="${boardID}"`)
-      .then( (itemObj) => {
-        // console.log("itemObj", itemObj);
-        let itemsArray = [];
-        for (let object in itemObj.data){
-          // itemObj.data[object].pinID = object;
-          // console.log(itemObj.data[object]);
-          itemsArray.push(itemObj.data[object]);
-        }
-        resolve(itemsArray);
-      })
-      .catch( (error) => {
-        reject(error);
-      });
-    });
-  };
+
 
   //gets a single pin on a board
   const getPin = (pinID) => {
@@ -138,6 +138,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
 
 
   return {
+    getBoardPins,
     getBoards,
     deleteBoard,
     makePin,
@@ -145,8 +146,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     getPins,
     getPin,
     removePin,
-    makeBoard,
-    getBoardPins
+    makeBoard
   };
 
 });
