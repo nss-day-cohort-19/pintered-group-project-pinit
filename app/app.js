@@ -35,8 +35,8 @@ app.config(($routeProvider)=>{
         controller: "UserBoardCtrl"
     })
     .when("/boards/:boardId/edit",{
-        templateUrl: "partials/boardForm",
-        controller: "editCtrl"
+        templateUrl: "partials/boardForm.html",
+        controller: "EditCtrl"
     })
     .when("/boards/:boardId/:pinId",{
         templateUrl: "partials/boardDetail.html",
@@ -44,7 +44,7 @@ app.config(($routeProvider)=>{
     })
     .when("/boards/:boardId/:pinId/edit",{
         templateUrl: "partials/pinForm.html",
-        controller:  "editCtrl"
+        controller:  "EditCtrl"
     })
     .otherwise("/");
 });
