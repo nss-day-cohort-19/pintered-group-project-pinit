@@ -14,9 +14,27 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
         });
     };
 
+    const getBoardPins = (boardId) => {
+        let pins = [];
+        return $q((resolve, reject) => {
+            $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="board_id"&equalTo="${boardId}"`)
+            .then((pinsObj) => {
+                let pinCollection = pinsObj.data;
+                Object.keys(pinCollection).forEach((key) => {
+                    pinCollection[key].id = key;
+                    pins.push(pinCollection[key]);
+                });
+                resolve(pins);
+            }).catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
     const getBoards = () => {
         let boards = [];
         return $q((resolve, reject) => {
+<<<<<<< HEAD
             $http.get(`${fbcreds.databaseURL}/boards.json`)
                 .then((boardsObj) => {
                     let boardsCollection = boardsObj.data;
@@ -93,6 +111,14 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
                 })
                 .catch((error) => {
                     reject(error);
+=======
+            $http.get(`${fbcreds.databaseURL}/boards.json`)  //?orderBy="uid"&equalTo="${user}"
+            .then((boardsObj) => {
+                let boardsCollection = boardsObj.data;
+                Object.keys(boardsCollection).forEach((key) => {
+                    boardsCollection[key].id = key;
+                    boards.push(boardsCollection[key]);
+>>>>>>> 2daaa889fe5852085d8dfb23e28906eea17f1f7a
                 });
         });
     };
@@ -109,6 +135,7 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
                     reject(error);
                 });
         });
+<<<<<<< HEAD
     };
 
     const removePin = (pinID) => {
@@ -181,5 +208,69 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
 
     };
 
+=======
+        resolve(pinObj.data);
+      })
+      .catch( (error) => {
+        reject(error);
+      });
+    });
+  };
+
+
+
+  //gets a single pin on a board
+  const getPin = (pinID) => {
+    console.log("pinID is", pinID);
+    return $q( (resolve, reject) => {
+      $http.get(`${fbcreds.databaseURL}/pins/${pinID}.json`)
+      .then( (pinObj) => {
+        resolve(pinObj.data);
+      })
+      .catch( (error) => {
+        reject(error);
+      });
+    });
+  };
+
+  const removePin = (pinID) => {
+    return $q ( (resolve, reject) => {
+      $http.delete(`${fbcreds.databaseURL}/pins/${pinID}.json`)
+      .then( (response) => {
+        resolve(response);
+      })
+      .catch( (error) => {
+        reject(error);
+      });
+    });
+  };
+
+  const makeBoard = (newObj) => {
+    return $q( (resolve, reject) => {
+      let object = JSON.stringify(newObj);
+      $http.post(`${fbcreds.databaseURL}/boards.json`, object)
+      .then ( (itemID) => {
+        resolve(itemID);
+
+      })
+      .catch( (error) => {
+        reject(error);
+      });
+    });
+  };
+
+
+  return {
+    getBoardPins,
+    getBoards,
+    deleteBoard,
+    makePin,
+    editPin,
+    getPins,
+    getPin,
+    removePin,
+    makeBoard
+  };
+>>>>>>> 2daaa889fe5852085d8dfb23e28906eea17f1f7a
 
 });
