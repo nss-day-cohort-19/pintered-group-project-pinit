@@ -13,10 +13,10 @@ app.factory("DataFactory", function($q,$http,fbcreds){
         });
     };
 
-    const getBoards = (user) => {
+    const getBoards = () => {
         let boards = [];
         return $q((resolve, reject) => {
-            $http.get(`${fbcreds.databaseURL}/boards.json?orderBy="uid"&equalTo="${user}`)
+            $http.get(`${fbcreds.databaseURL}/boards.json`)
             .then((boardsObj) => {
                 let boardsCollection = boardsObj.data;
                 Object.keys(boardsCollection).forEach((key) => {
@@ -70,6 +70,25 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
+  const getBoardPins = ( boardID ) => {
+    return $q( (resolve, reject) => {
+      $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="board_id"&equalTo="${boardID}"`)
+      .then( (itemObj) => {
+        // console.log("itemObj", itemObj);
+        let itemsArray = [];
+        for (let object in itemObj.data){
+          // itemObj.data[object].pinID = object;
+          // console.log(itemObj.data[object]);
+          itemsArray.push(itemObj.data[object]);
+        }
+        resolve(itemsArray);
+      })
+      .catch( (error) => {
+        reject(error);
+      });
+    });
+  };
+
   //gets a single pin on a board
   const getPin = (pinID) => {
     return $q( (resolve, reject) => {
@@ -109,6 +128,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
+
   return {
     getBoards,
     deleteBoard,
@@ -117,7 +137,8 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     getPins,
     getPin,
     removePin,
-    makeBoard
+    makeBoard,
+    getBoardPins
   };
 
 });
