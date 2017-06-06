@@ -15,6 +15,18 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
     });
   };
 
+  const getBoard = ( boardID ) => {
+    return $q( (resolve, reject) => {
+      $http.get(`${fbcreds.databaseURL}/boards/${boardID}.json`)
+      .then( (itemObj) => {
+        resolve(itemObj.data);
+      })
+      .catch( (error) => {
+        reject(error);
+      });
+    });
+  };
+
   return {
     makeBoard
   };
