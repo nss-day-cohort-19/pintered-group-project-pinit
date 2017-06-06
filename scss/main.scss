@@ -39,3 +39,26 @@ h1, h2 {
 .colorBG{
   background-color: #85C1F5;
 }
+
+.userBoards{
+  * {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+  }
+  .board{
+    padding: 1%;
+
+    .board-wrapper{
+      margin: 2% 2%;
+      border-radius: 1em;
+      overflow: hidden;
+      width: 100%;
+      background-color: #eee;
+      min-height: 10em;
+    }
+  }
+  img{
+    border-radius: 0;
+  }
+
+}
