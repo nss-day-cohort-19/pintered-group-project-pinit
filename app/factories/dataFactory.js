@@ -1,7 +1,34 @@
 "use strict";
 
-
 app.factory("DataFactory", function($q,$http,fbcreds){
+
+	const deleteBoard = (boardId) => {
+        return $q((resolve, reject) => {
+            $http.delete(`${fbcreds.databaseURL}/boards/${boardId}.json?`)
+            .then( (response) => {
+                resolve(response);
+            }).catch( (response) => {
+                reject(response);
+            });
+        });
+    };
+
+    const getBoards = (user) => {
+        let boards = [];
+        return $q((resolve, reject) => {
+            $http.get(`${fbcreds.databaseURL}/boards.json?orderBy="uid"&equalTo="${user}`)
+            .then((boardsObj) => {
+                let boardsCollection = boardsObj.data;
+                Object.keys(boardsCollection).forEach((key) => {
+                    boardsCollection[key].id = key;
+                    boards.push(boardsCollection[key]);
+                });
+                resolve(boards);
+            }).catch((error) => {
+                reject(error);
+            });
+        });
+    };
 
 	const makePin = ( newObj ) => {
     return $q( (resolve, reject) => {
@@ -17,7 +44,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
   };
 
   
-  const editPin = ( pinID, editedObj ) => {
+  const editPin = (pinID, editedObj) => {
     return $q( (resolve, reject) => {
       let newObj = JSON.stringify(editedObj);
       $http.patch(`${fbcreds.databaseURL}/pins/${pinID}.json`, newObj)
@@ -30,6 +57,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
+ 
   const getPins = () => {
     return $q( (resolve, reject) => {
       $http.get(`${fbcreds.databaseURL}/pins.json`)
@@ -44,11 +72,36 @@ app.factory("DataFactory", function($q,$http,fbcreds){
 
   const getBoardPins = ( boardID ) => {
     return $q( (resolve, reject) => {
-      $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="boards"&equalTo="${boardID}"`);
+      $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="boards"&equalTo="${boardID}"`)
+      .then( (itemObj) => {
+        // console.log("itemObj", itemObj);
+        let itemsArray = [];
+        for (let object in itemObj.data){
+          itemObj.data[object].pinID = object;
+          // console.log(itemObj.data[object]);
+          itemsArray.push(itemObj.data[object]);
+        }
+        resolve(itemsArray);
+      })
+      .catch( (error) => {
+        reject(error);
+      });
     });
   };
 
-  const removePin = ( pinID ) => {
+  const getPin = (pinID) => {
+    return $q( (resolve, reject) => {
+      $http.get(`${fbcreds.databaseURL}/pins/${pinID}.json`)
+      .then( (pinObj) => {
+        resolve(pinObj.data);
+      })
+      .catch( (error) => {
+        reject(error);
+      });
+    });
+  };
+
+  const removePin = (pinID) => {
     return $q ( (resolve, reject) => {
       $http.delete(`${fbcreds.databaseURL}/pins/${pinID}.json`)
       .then( (response) => {
@@ -59,7 +112,6 @@ app.factory("DataFactory", function($q,$http,fbcreds){
       });
     });
   };
-
 
   const makeBoard = ( newObj ) => {
     return $q( (resolve, reject) => {
@@ -77,13 +129,15 @@ app.factory("DataFactory", function($q,$http,fbcreds){
 
 
   return {
-
+    getBoards,
+    deleteBoard,
     makePin,
     editPin,
     getPins,
+    getPin,
     removePin,
-    makeBoard
-
+    makeBoard,
+    getBoardPins
   };
 
 });
