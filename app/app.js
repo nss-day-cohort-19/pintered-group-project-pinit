@@ -12,8 +12,8 @@ app.run(($location, fbcreds)=>{
 });
 
 
-app.config(($routProvider)=>{
-    $routProvider
+app.config(($routeProvider)=>{
+    $routeProvider
     .when("/",{
         templateUrl: "partials/allPins.html",
         controller: "AllPin"
