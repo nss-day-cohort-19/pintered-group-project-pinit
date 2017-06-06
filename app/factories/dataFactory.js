@@ -57,7 +57,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
- 
+  //gets all pins, this is visible when you come to page in the beginning
   const getPins = () => {
     return $q( (resolve, reject) => {
       $http.get(`${fbcreds.databaseURL}/pins.json`)
@@ -70,6 +70,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
+  //gets a single pin on a board
   const getPin = (pinID) => {
     return $q( (resolve, reject) => {
       $http.get(`${fbcreds.databaseURL}/pins/${pinID}.json`)
@@ -94,7 +95,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
-  const makeBoard = ( newObj ) => {
+  const makeBoard = (newObj) => {
     return $q( (resolve, reject) => {
       let object = JSON.stringify(newObj);
       $http.post(`${fbcreds.databaseURL}/boards.json`, object)
