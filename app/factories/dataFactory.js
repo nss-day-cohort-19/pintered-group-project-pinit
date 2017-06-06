@@ -42,6 +42,12 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
+  const getBoardPins = ( boardID ) => {
+    return $q( (resolve, reject) => {
+      $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="boards"&equalTo="${boardID}"`);
+    });
+  };
+
   const removePin = ( pinID ) => {
     return $q ( (resolve, reject) => {
       $http.delete(`${fbcreds.databaseURL}/pins/${pinID}.json`)
@@ -69,17 +75,6 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
-  const getPins = ( boardID ) => {
-    return $q( (resolve, reject) => {
-      $http.get(`${fbcreds.databaseURL}/pins/${boardID}.json`)
-      .then( (itemObj) => {
-        resolve(itemObj.data);
-      })
-      .catch( (error) => {
-        reject(error);
-      });
-    });
-  };
 
   return {
 
