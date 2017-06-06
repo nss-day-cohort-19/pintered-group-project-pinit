@@ -31,7 +31,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
         });
     };
 
-    const makePin = ( newObj ) => {
+	const makePin = ( newObj ) => {
     return $q( (resolve, reject) => {
       let object = JSON.stringify(newObj);
       $http.post(`${fbcreds.databaseURL}/pins.json`, object)
@@ -58,9 +58,10 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     });
   };
 
+ 
   const getPins = () => {
     return $q( (resolve, reject) => {
-      $http.get(`${fbcreds.databaseURL}/pins/${pinID}.json`)
+      $http.get(`${fbcreds.databaseURL}/pins.json`)
       .then( (pinObj) => {
         resolve(pinObj.data);
       })
@@ -72,9 +73,12 @@ app.factory("DataFactory", function($q,$http,fbcreds){
 
   const removePin = ( pinID ) => {
     return $q ( (resolve, reject) => {
-      $http.delete(`${FBCreds.databaseURL}/pins/${pinID}.json`)
+      $http.delete(`${fbcreds.databaseURL}/pins/${pinID}.json`)
       .then( (response) => {
         resolve(response);
+      })
+      .catch( (error) => {
+        reject(error);
       });
     });
   };
@@ -101,5 +105,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     getPins,
     removePin,
     makeBoard
+
   };
+
 });
