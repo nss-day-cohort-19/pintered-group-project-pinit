@@ -34,6 +34,10 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/userBoards.html",
         controller: "UserBoardCtrl"
     })
+    .when("/boards/myBoard", {
+        templateUrl: "partials/boardDetail.html",
+        controller: "BoardDetailCtrl"
+    })
     .when("/boards/:boardId/edit",{
         templateUrl: "partials/boardForm",
         controller: "editCtrl"

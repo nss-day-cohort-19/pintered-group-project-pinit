@@ -20,6 +20,12 @@ console.log("routeParams.pinid is", $routeParams.pinId);
   });
 
 
+  DataFactory.getBoards()
+  .then ( (data) => {
+    console.log("data", data);
+    $scope.boards = data;
+  });
+
   $scope.submitPin = function () {
 
     console.log("$scope.pin", $scope.pin);
