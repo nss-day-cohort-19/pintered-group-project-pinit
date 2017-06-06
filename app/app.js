@@ -57,4 +57,6 @@ app.run(($location, fbcreds)=>{
     authDomain: cred.authDomain,
     databaseURL: cred.databaseUrl
    };
+
+   firebase.initializeApp(authConfig);
 });
