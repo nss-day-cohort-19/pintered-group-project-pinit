@@ -72,7 +72,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
 
   const getBoardPins = ( boardID ) => {
     return $q( (resolve, reject) => {
-      $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="boards"&equalTo="${boardID}"`)
+      $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="board_id"&equalTo="${boardID}"`)
       .then( (itemObj) => {
         // console.log("itemObj", itemObj);
         let itemsArray = [];

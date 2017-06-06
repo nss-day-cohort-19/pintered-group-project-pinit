@@ -4,7 +4,7 @@ app.controller("BoardDetailCtrl", function($scope, DataFactory){
 
 	// console.log("$scope", $scope);
 
-	DataFactory.getBoardPins( "board1")
+	DataFactory.getBoardPins( "-Kly51h5kVTjUMoMLJNX" )
 	.then( (object) => {
 		$scope.pins = object;
 		$scope.boardName = object[0].boards;
