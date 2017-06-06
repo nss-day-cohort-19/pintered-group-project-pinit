@@ -17,4 +17,3 @@ app.controller("BoardFormCtrl", function($scope, DataFactory, $location){
  	};
 
 });
-

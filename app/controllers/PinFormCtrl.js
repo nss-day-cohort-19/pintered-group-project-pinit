@@ -11,6 +11,12 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location){
     tags:""
   };
 
+  DataFactory.getBoards()
+  .then ( (data) => {
+    console.log("data", data);
+    $scope.boards = data;
+  });
+
   $scope.submitPin = function () {
 
     console.log("$scope.pin", $scope.pin);
