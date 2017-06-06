@@ -1,15 +1,7 @@
 "use strict";
 
-const app= angular.module("PinItApp", ["ngRoute"]);
+const app = angular.module("PinItApp", ["ngRoute"]);
 
-app.run(($location, fbcreds)=>{
-   let cred= fbcreds;
-   let authConfig={
-    apiKey: cred.apiKey,
-    authDomain: cred.authDomain,
-    databaseURL: cred.databaseUrl
-   };
-});
 
 
 app.config(($routeProvider)=>{
@@ -55,4 +47,16 @@ app.config(($routeProvider)=>{
         controller:  "editCtrl"
     })
     .otherwise("/");
+});
+
+
+app.run(($location, fbcreds)=>{
+   let cred = fbcreds;
+   let authConfig = {
+    apiKey: cred.apiKey,
+    authDomain: cred.authDomain,
+    databaseURL: cred.databaseUrl
+   };
+
+   firebase.initializeApp(authConfig);
 });
