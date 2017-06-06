@@ -1,20 +1,26 @@
 "use strict";
 
 app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
-    let user = AuthFactory.getUser();
-    user = "";
+    // let user = AuthFactory.getUser();
+    // user = "";
 
     $scope.getBoards = () => {
-        DataFactory.getBoards(user)
+        DataFactory.getBoards()
         .then( (boards) => {
-            $scope.userBoards = boards.data;
-            console.log($scope.userBoards);
-            // for(x in $scope.boards){
-            //     DataFactory.getPins(x)
-            //     .then( (pins) => {
-            //         $scope.boards.x = pins.data;
-            //     });
-            // }
+            $scope.userBoards = boards;
+            for(let x in $scope.userBoards){
+                DataFactory.getBoardPins($scope.userBoards[x].id)
+                .then( (pins) => {
+                    if(pins.length !== 0) {
+                        for(let y in $scope.userBoards) {
+                            if($scope.userBoards[y].id === pins[0].board_id) {
+                                $scope.userBoards[y].pins = pins;
+                            } 
+                        }
+                        console.log($scope, "scope");
+                    }
+                });
+            }
         });
     };
 

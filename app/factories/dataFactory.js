@@ -13,10 +13,27 @@ app.factory("DataFactory", function($q,$http,fbcreds){
         });
     };
 
-    const getBoards = (user) => {
+    const getBoardPins = (boardId) => {
+        let pins = [];
+        return $q((resolve, reject) => {
+            $http.get(`${fbcreds.databaseURL}/pins.json?orderBy="board_id"&equalTo="${boardId}"`)
+            .then((pinsObj) => {
+                let pinCollection = pinsObj.data;
+                Object.keys(pinCollection).forEach((key) => {
+                    pinCollection[key].id = key;
+                    pins.push(pinCollection[key]);
+                });
+                resolve(pins);
+            }).catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+    const getBoards = () => {
         let boards = [];
         return $q((resolve, reject) => {
-            $http.get(`${fbcreds.databaseURL}/boards.json?orderBy="uid"&equalTo="${user}`)
+            $http.get(`${fbcreds.databaseURL}/boards.json`)  //?orderBy="uid"&equalTo="${user}"
             .then((boardsObj) => {
                 let boardsCollection = boardsObj.data;
                 Object.keys(boardsCollection).forEach((key) => {
@@ -109,6 +126,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
   };
 
   return {
+    getBoardPins,
     getBoards,
     deleteBoard,
     makePin,
