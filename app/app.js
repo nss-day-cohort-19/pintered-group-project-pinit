@@ -40,7 +40,7 @@ app.config(($routeProvider)=>{
     })
     .when("/boards/:boardId/edit",{
         templateUrl: "partials/boardForm",
-        controller: "editCtrl"
+        controller: "editBoardCtrl"
     })
     .when("/boards/:boardId/:pinId",{
         templateUrl: "partials/boardDetail.html",
@@ -48,11 +48,19 @@ app.config(($routeProvider)=>{
     })
     .when("/boards/:boardId/:pinId/edit",{
         templateUrl: "partials/pinForm.html",
-        controller:  "editCtrl"
+        controller:  "EditCtrl"
     })
     .when("/:pinId/edit",{
         templateUrl: "partials/pinForm.html",
-        controller: "editCtrl"
+        controller: "EditCtrl"
+    })
+    .when("/:pinId",{
+        templateUrl: "partials/pin.html",
+        controller: "pinCtrl"
+    })
+    .when("/:pinId/addpin",{
+        templateUrl: "partials/pinForm.html",
+        controller: "PinFormCtrl"
     })
     .otherwise("/");
 });
