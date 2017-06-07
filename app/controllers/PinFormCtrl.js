@@ -11,7 +11,15 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routePar
     tags:""
   };
   $scope.temp = "";
-
+  if($routeParams.pinId) {
+    DataFactory.getPin($routeParams.pinId)
+    .then( (stuff) => {
+      $scope.pin = stuff;
+      console.log("what is stuff", stuff);
+      console.log("and the scope of stuff is", $scope.pin);
+      $scope.pin.id = $routeParams.pinId;
+    });
+  }
   function populateBoards() {
     DataFactory.getBoards()
     .then( (data) => {
@@ -24,7 +32,10 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routePar
     if(event.keyCode === 13){
       $scope.boardName = $scope.temp;
       DataFactory.makeBoard({title: $scope.temp})
-      .then( populateBoards);
+      .then( (response) => {
+        $scope.pin.board_id = response.data.name;
+        populateBoards();
+      });
     }
   };
   
