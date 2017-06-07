@@ -38,7 +38,7 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
               let boards = [];
               let boardCollection = boardsObj.data;
               Object.keys(boardCollection).forEach((key) => {
-                boardCollection[key].board_id = key;
+                boardCollection[key].id = key;
                 boards.push(boardCollection[key]);
               });
               resolve(boards);
