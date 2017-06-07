@@ -33,8 +33,4 @@ app.controller("BoardDetailCtrl", function($scope, DataFactory, $routeParams){
 		$scope.$apply();
 	});
 
-	// Promise.all([p1, p2, p3]).then(values => { 
-	//   console.log(values); // [3, 1337, "foo"] 
-	// });
-
 });
