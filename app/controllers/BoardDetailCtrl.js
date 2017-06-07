@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("BoardDetailCtrl", function($scope, DataFactory, $routeParams){
+app.controller("BoardDetailCtrl", function($scope, DataFactory, $routeParams,$window){
 
 	$scope.getBoardPins = () => {
 		Promise.all([DataFactory.getBoardPins($routeParams.boardId), DataFactory.getBoard($routeParams.boardId)])
