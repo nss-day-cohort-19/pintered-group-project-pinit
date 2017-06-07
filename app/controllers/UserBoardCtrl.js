@@ -7,7 +7,6 @@ app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
     $scope.getBoards = () => {
         
         function sortPins(x) {
-            console.log()
             DataFactory.getBoardPins($scope.userBoards[x].board_id)
             .then( (pins) => {
                 console.log(pins, "pins");

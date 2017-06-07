@@ -7,7 +7,8 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
             $http.delete(`${fbcreds.databaseURL}/boards/${boardId}.json?`)
                 .then((response) => {
                     resolve(response);
-                }).catch((response) => {
+                })
+                .catch((response) => {
                     reject(response);
                 });
         });
@@ -39,7 +40,7 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
               Object.keys(boardCollection).forEach((key) => {
                 boardCollection[key].board_id = key;
                 boards.push(boardCollection[key]);
-              })
+              });
               resolve(boards);
             }).catch((error) => {
                 reject(error);
@@ -55,7 +56,6 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
       .catch( reject);
     });
   };
-
   
   const editPin = (pinID, editedObj) => {
     return $q( (resolve, reject) => {
@@ -88,33 +88,6 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
       });
     });
   };
-
-    const makePin = (newObj) => {
-        return $q((resolve, reject) => {
-            let object = JSON.stringify(newObj);
-            $http.post(`${fbcreds.databaseURL}/pins.json`, object)
-                .then((pinID) => {
-                    resolve(pinID);
-                })
-                .catch((error) => {
-                    reject(error);
-                });
-        });
-    };
-
-
-    const editPin = (pinID, editedObj) => {
-        return $q((resolve, reject) => {
-            let newObj = JSON.stringify(editedObj);
-            $http.patch(`${fbcreds.databaseURL}/pins/${pinID}.json`, newObj)
-                .then((pinObj) => {
-                    resolve(pinObj);
-                })
-                .catch((error) => {
-                    reject(error);
-                });
-        });
-    };
 
     //gets a single pin on a board
     const getPin = (pinID) => {
