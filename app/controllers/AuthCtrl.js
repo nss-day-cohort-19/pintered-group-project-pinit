@@ -60,7 +60,7 @@ app.controller("AuthCtrl", function ($scope, $window, AuthFactory, $location) {
         var user = result.user.uid;
         console.log("logged in user:", user);
         //Once logged in, go to another view
-        $location.path("/allPin");
+        $location.path("/allPins");
         $scope.$apply();
       }).catch(function (error) {
         // Handle the Errors.

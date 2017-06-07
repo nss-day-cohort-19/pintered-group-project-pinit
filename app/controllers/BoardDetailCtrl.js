@@ -1,12 +1,6 @@
 "use strict";
 
-<<<<<<< HEAD
-app.controller("BoardDetailCtrl", function($scope, DataFactory, $routeParams,$window){
-=======
 app.controller("BoardDetailCtrl", function($scope, DataFactory, $routeParams, $location){
-
-	// console.log("$scope", $scope);
->>>>>>> b31fe62d76f0d1938ee2887b1a690bf483f56c88
 
 	$scope.getBoardPins = () => {
 		DataFactory.getBoardPins($routeParams.boardId)
