@@ -1,6 +1,7 @@
 "use strict";
 
-app.controller('editCtrl', function($scope, $routeParams, DataFactory, $location, $window) {
+
+app.controller('EditCtrl', function($scope, $routeParams, DataFactory, $location, $window) {
   
   $scope.pin = {
   	uid:"",

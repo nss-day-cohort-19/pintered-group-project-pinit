@@ -2,8 +2,6 @@
 
 const app = angular.module("PinItApp", ["ngRoute"]);
 
-
-
 app.config(($routeProvider)=>{
     $routeProvider
     .when("/",{
@@ -40,7 +38,7 @@ app.config(($routeProvider)=>{
     })
     .when("/boards/:boardId/edit",{
         templateUrl: "partials/boardForm",
-        controller: "editBoardCtrl"
+        controller: "EditBoardCtrl"
     })
     .when("/boards/:boardId/:pinId",{
         templateUrl: "partials/boardDetail.html",
@@ -60,7 +58,7 @@ app.config(($routeProvider)=>{
     })
     .when("/:pinId",{
         templateUrl: "partials/pin.html",
-        controller: "pinCtrl"
+        controller: "PinCtrl"
     })
     .when("/:pinId/addpin",{
         templateUrl: "partials/pinForm.html",
@@ -68,7 +66,7 @@ app.config(($routeProvider)=>{
     })
     .when("/:itemId/pin",{
         templateUrl: "partials/pin.html",
-        controller: "pinCtrl"
+        controller: "PinCtrl"
     })
     .when("/:pinId/addpin",{
         templateUrl: "partials/pinForm.html",

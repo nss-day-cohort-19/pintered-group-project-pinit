@@ -1,7 +1,6 @@
 "use strict";
 
-
-app.controller("pinCtrl", function($scope, DataFactory, $location, $routeParams, $window){
+app.controller("PinCtrl", function($scope, DataFactory, $location, $routeParams, $window){
   $scope.pin = {
     uid:"",
     url: "",
