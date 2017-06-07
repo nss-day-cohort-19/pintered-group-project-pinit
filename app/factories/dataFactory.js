@@ -48,6 +48,27 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
         });
     };
 
+
+  //gets all pins, this is visible when you come to page in the beginning
+  const getPins = () => {
+    let pins = [];
+    return $q( (resolve, reject) => {
+      $http.get(`${fbcreds.databaseURL}/pins.json`)
+      .then( (pinObj) => {
+        
+        let pinCollection = pinObj.data;
+        Object.keys(pinCollection).forEach((key)=>{
+          pinCollection[key].id= key;
+          pins.push(pinCollection[key]);
+        });
+        resolve(pins);
+      })
+      .catch( (error) => {
+        reject(error);
+      });
+    });
+  };
+
     const makePin = (newObj) => {
         return $q((resolve, reject) => {
             let object = JSON.stringify(newObj);
@@ -68,26 +89,6 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
             $http.patch(`${fbcreds.databaseURL}/pins/${pinID}.json`, newObj)
                 .then((pinObj) => {
                     resolve(pinObj);
-                })
-                .catch((error) => {
-                    reject(error);
-                });
-        });
-    };
-
-    //gets all pins, this is visible when you come to page in the beginning
-    const getPins = () => {
-        let x = [];
-        return $q((resolve, reject) => {
-            $http.get(`${fbcreds.databaseURL}/pins.json`)
-                .then((pinObj) => {
-
-                    let itemObj = pinObj.data;
-                    Object.keys(itemObj).forEach((key) => {
-                        itemObj[key].id = key;
-                        x.push(itemObj[key]);
-                    });
-                    resolve(pinObj.data);
                 })
                 .catch((error) => {
                     reject(error);
