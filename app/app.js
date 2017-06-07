@@ -34,13 +34,13 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/userBoards.html",
         controller: "UserBoardCtrl"
     })
-    .when("/boards/myBoard", {
+    .when("/boards/:boardId", {
         templateUrl: "partials/boardDetail.html",
         controller: "BoardDetailCtrl"
     })
     .when("/boards/:boardId/edit",{
         templateUrl: "partials/boardForm",
-        controller: "EditCtrl"
+        controller: "editBoardCtrl"
     })
     .when("/boards/:boardId/:pinId",{
         templateUrl: "partials/boardDetail.html",
@@ -53,6 +53,14 @@ app.config(($routeProvider)=>{
     .when("/:pinId/edit",{
         templateUrl: "partials/pinForm.html",
         controller: "EditCtrl"
+    })
+    .when("/:pinId",{
+        templateUrl: "partials/pin.html",
+        controller: "pinCtrl"
+    })
+    .when("/:pinId/addpin",{
+        templateUrl: "partials/pinForm.html",
+        controller: "PinFormCtrl"
     })
     .otherwise("/");
 });
