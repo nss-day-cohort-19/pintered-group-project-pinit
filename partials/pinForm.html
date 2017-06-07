@@ -1,4 +1,3 @@
-<h1></h1>
 <form class="form--demo col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
   <div class="form-group">
     <label>Url/img</label>
@@ -13,17 +12,23 @@
     <input type="text" class="form-control" ng-model="pin.description"></input>
   </div>
   <div class="form-group">
-    <label>Boards</label>
-    <select class="form-control" ng-model="pin.board_id">
-      <option value="{{item.id}}" ng-repeat="item in boards" id="{{item.id}}">{{item.title}}</option>
-      <option value="board2">Create Board</option>
-    </select>
+    <label>User text</label>
+    <input type="text" class="form-control" ng-model="pin.user_text"></input>
+  </div>
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><label>Boards</label>
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li ng-repeat="item in boards" ng-click="addBoard(item.id, item.title)">{{item.title}}</li>
+      <li><input type="text" placeholder="new board" ng-model="temp" ng-keypress="newBoard($event)"></input></li>
+    </ul>
+    {{boardName}}
   </div>
   <div class="form-group">
     <label>Tags</label>
     <input type="text" class="form-control" ng-model="pin.tags"></input>
   </div>
   <div class="text-center">
-    <button ng-click="submitPin()" class="btn btn-default btn-primary">Submit Pin</button>
+    <button type="button" ng-click="submitPin()" class="btn btn-default btn-primary">Submit Pin</button>
   </div>
 </form>
