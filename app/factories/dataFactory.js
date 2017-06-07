@@ -3,6 +3,7 @@
 app.factory("DataFactory", function($q, $http, fbcreds) {
 
     const deleteBoard = (boardId) => {
+    	console.log("boardId within deleteBoard", boardId);
         return $q((resolve, reject) => {
             $http.delete(`${fbcreds.databaseURL}/boards/${boardId}.json?`)
                 .then((response) => {
