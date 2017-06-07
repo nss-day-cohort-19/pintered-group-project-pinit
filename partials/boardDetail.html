@@ -1,7 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h2>{{boardName}}</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            {{board.name}}title goes here
+            <div class="btn-group pull-right navbar-right">
+              <button class="glyphicon glyphicon-remove" ng-click="deleteBoard(board.id)" aria-hidden="true"></button>
+            </div>
+          </h3>
+        </div>
     </div>
   </div>
   <div class="row">
@@ -11,7 +18,7 @@
           <h3 class="panel-title">
             {{item.name}}
             <div class="btn-group pull-right navbar-right">
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <button class="glyphicon glyphicon-remove" ng-click="removePin(item.id)" aria-hidden="true"></button>
             </div>
           </h3>
        	</div>
