@@ -59,17 +59,17 @@ app.factory("DataFactory", function($q,$http,fbcreds){
 
   //gets all pins, this is visible when you come to page in the beginning
   const getPins = () => {
-    let x=[];
+    let pins = [];
     return $q( (resolve, reject) => {
       $http.get(`${fbcreds.databaseURL}/pins.json`)
       .then( (pinObj) => {
         
-        let itemObj= pinObj.data;
-        Object.keys(itemObj).forEach((key)=>{
-          itemObj[key].id= key;
-          x.push(itemObj[key]);
+        let pinCollection = pinObj.data;
+        Object.keys(pinCollection).forEach((key)=>{
+          pinCollection[key].id= key;
+          pins.push(pinCollection[key]);
         });
-        resolve(pinObj.data);
+        resolve(pins);
       })
       .catch( (error) => {
         reject(error);
