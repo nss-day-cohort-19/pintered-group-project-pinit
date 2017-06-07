@@ -32,7 +32,6 @@ console.log("routeParams.pinid is", $routeParams.pinId);
     DataFactory.makePin($scope.pin)
     .then(()=>{
       console.log("$scope.pin", $scope.pin);
-      
       $window.location.url= "#!/allPins";
     })
     .then( (data)=>{

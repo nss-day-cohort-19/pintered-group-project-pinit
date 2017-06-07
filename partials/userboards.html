@@ -1,7 +1,7 @@
 <h1>My Boards</h1>
 <div class="row col-sm-10 col-sm-offset-1 userBoards">
     <div ng-repeat="board in userBoards" class="col-sm-4 board">
-        <a ng-href="#!/boards/{{board.id}}" ng-controller="BoardDetailCtrl">
+        <a ng-href="#!/boards/{{board.id}}">
             <div class="board-wrapper">
                 <div class="row">
                     <div ng-repeat="item in board.pins">
