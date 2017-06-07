@@ -54,6 +54,14 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/pinForm.html",
         controller: "editCtrl"
     })
+    .when("/:pinId",{
+        templateUrl: "partials/pin.html",
+        controller: "pinCtrl"
+    })
+    .when("/:pinId/addpin",{
+        templateUrl: "partials/pinForm.html",
+        controller: "PinFormCtrl"
+    })
     .otherwise("/");
 });
 
