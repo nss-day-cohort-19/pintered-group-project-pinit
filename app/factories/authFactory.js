@@ -37,7 +37,7 @@ app.factory("AuthFactory", function(){
             firebase.auth().onAuthStateChanged( (user) => {
                 if (user){
                     currentUser = user.uid;
-                    console.log("user", user.uid);
+                    console.log("isAuthenticated user", user.uid);
                     resolve(true);
                 }else {
                     resolve(false);

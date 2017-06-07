@@ -1,10 +1,11 @@
  "use strict";
 
 app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
-    // let user = AuthFactory.getUser();
+    let user = AuthFactory.getUser();
     // user = "";
+    console.log("user", user);
 
-    $scope.getBoards = () => {
+    $scope.getBoards = ( uid ) => {
         
         function sortPins(x) {
             DataFactory.getBoardPins($scope.userBoards[x].id)
@@ -21,7 +22,7 @@ app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
             });
         }
         
-        DataFactory.getBoards()
+        DataFactory.getBoards( uid )
         .then( (boards) => {
             $scope.userBoards = boards;
             for(let x in $scope.userBoards){
@@ -37,5 +38,5 @@ app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
         });
     };
 
-    $scope.getBoards();
+    $scope.getBoards( user );
 });

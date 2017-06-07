@@ -1,12 +1,14 @@
 "use strict";
 
 
-app.controller('EditBoardCtrl', function($scope, $routeParams, DataFactory, $location) {
+app.controller('EditBoardCtrl', function($scope, $routeParams, DataFactory, $location, AuthFactory) {
+
+    let user = AuthFactory.getUser();
 
     $scope.board = {
         title: "",
         description: "",
-        uid: ""
+        uid: user
     };
     ///boards/:boardId/edit
     DataFactory.getBoard($routeParams.boardId)
