@@ -1,11 +1,16 @@
-<div class="container boardDetail" >
-  <div class="row" >
-    <div class="col-md-12">
-      <h2>{{boardName}}  
-    <a ng-href="#!/newPin"><img class="newPinBtn" src="https://d30y9cdsu7xlg0.cloudfront.net/png/32881-200.png"></a>
-    </h2>
+<div class="container">
+  <div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            {{boardName}}
+            <div class="btn-group pull-right navbar-right">
+              <button class="glyphicon glyphicon-remove" ng-click="deleteBoard(board.id)" aria-hidden="true"></button>
+            </div>
+            <a ng-href="#!/newPin"><img class="newPinBtn" src="https://d30y9cdsu7xlg0.cloudfront.net/png/32881-200.png"></a>
+          </h3>
+        </div>
     </div>
-
   </div>
   <div class="row spacing">
     <div class="col-md-4" ng-repeat="item in pins">
@@ -16,8 +21,8 @@
           <h3 class="panel-title">
             {{item.name}}
             <div class="btn-group pull-right navbar-right">
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               <a class="glyphicon glyphicon-edit" ng-href="#!/{{item.id}}/edit"></a>
+              <button class="glyphicon glyphicon-remove" ng-click="removePin(item.id)" aria-hidden="true"></button>
             </div>
           </h3>
        	</div>
