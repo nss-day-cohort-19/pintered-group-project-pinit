@@ -45,6 +45,10 @@ app.config(($routeProvider)=>{
     .when("/boards/:boardId/:pinId",{
         templateUrl: "partials/boardDetail.html",
         controller: "BoardDetailCtrl"
+    })   
+     .when("/newPinBoard", {
+        templateUrl: "partials/newPin.html",
+        controller: "BoardPinCtrl"
     })
     .when("/boards/:boardId/:pinId/edit",{
         templateUrl: "partials/pinForm.html",
@@ -54,7 +58,7 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/pinForm.html",
         controller: "editCtrl"
     })
-    .when("/:pinId",{
+    .when("/:itemId/pin",{
         templateUrl: "partials/pin.html",
         controller: "pinCtrl"
     })

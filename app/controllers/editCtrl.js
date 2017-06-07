@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('editCtrl', function($scope, $routeParams, DataFactory, $location) {
+app.controller('editCtrl', function($scope, $routeParams, DataFactory, $location, $window) {
   
   $scope.pin = {
   	uid:"",
@@ -24,10 +24,11 @@ console.log("routeParams.pinid is", $routeParams.pinId);
   $scope.submitPin = function() {
     // stuff goes here
     DataFactory.editPin($routeParams.pinId, $scope.pin)
-    .then( (response) => {
-    	$location.path("/");
+    .then((event)=>{
+      $window.location.url= "#!/boards/:boardId";
+    }) 
+    .then( (data)=>{
+      $location.path("/boards/:boardId");
     });
-    console.log("pin", $scope.pin);
-    console.log("You clicked the edit pin button!");
   };
 });

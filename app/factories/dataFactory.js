@@ -86,7 +86,7 @@ app.factory("DataFactory", function($q,$http,fbcreds){
           itemObj[key].id= key;
           x.push(itemObj[key]);
         });
-        resolve(pinObj.data);
+        resolve(x);
       })
       .catch( (error) => {
         reject(error);
