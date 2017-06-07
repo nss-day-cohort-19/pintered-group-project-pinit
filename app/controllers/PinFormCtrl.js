@@ -10,28 +10,44 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routePar
     board_id:"",
     tags:""
   };
-console.log("routeParams.pinid is", $routeParams.pinId);
-  DataFactory.getPin($routeParams.pinId)
-  .then( (stuff) => {
-    $scope.pin = stuff;
-    console.log("what is stuff", stuff);
-    console.log("and the scope of stuff is", $scope.pin);
-    $scope.pin.id = $routeParams.pinId;
-  });
+  $scope.temp = "";
+  if($routeParams.pinId) {
+    DataFactory.getPin($routeParams.pinId)
+    .then( (stuff) => {
+      $scope.pin = stuff;
+      console.log("what is stuff", stuff);
+      console.log("and the scope of stuff is", $scope.pin);
+      $scope.pin.id = $routeParams.pinId;
+    });
+  }
+  function populateBoards() {
+    DataFactory.getBoards()
+    .then( (data) => {
+      $scope.boards = data;
+    });
+  }
+  populateBoards();
 
-
-  DataFactory.getBoards()
-  .then ( (data) => {
-    console.log("data", data);
-    $scope.boards = data;
-  });
+  $scope.newBoard = (event) => {
+    if(event.keyCode === 13){
+      $scope.boardName = $scope.temp;
+      DataFactory.makeBoard({title: $scope.temp})
+      .then( (response) => {
+        $scope.pin.board_id = response.data.name;
+        populateBoards();
+      });
+    }
+  };
+  
+  $scope.addBoard = (boardId, boardTitle) => {
+      $scope.pin.board_id = boardId;
+      $scope.boardName = boardTitle;
+  };
 
   $scope.submitPin = function () {
 
-    console.log("$scope.pin", $scope.pin);
     DataFactory.makePin($scope.pin)
     .then(()=>{
-      console.log("$scope.pin", $scope.pin);
       $window.location.url= "#!/allPins";
     })
     .then( (data)=>{
