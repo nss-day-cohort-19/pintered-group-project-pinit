@@ -51,7 +51,8 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routePar
       $window.location.url= "#!/allPins";
     })
     .then( (data)=>{
-      $location.path("/allPins");
+      $location.path("/boards");
+
     });
   
   };

@@ -3,6 +3,7 @@
 app.factory("DataFactory", function($q, $http, fbcreds) {
 
     const deleteBoard = (boardId) => {
+    	console.log("boardId within deleteBoard", boardId);
         return $q((resolve, reject) => {
             $http.delete(`${fbcreds.databaseURL}/boards/${boardId}.json?`)
                 .then((response) => {
@@ -30,6 +31,7 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
             });
         });
     };
+
 
     const getBoards = () => {
         return $q((resolve, reject) => {
@@ -104,7 +106,10 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
     };
 
     const removePin = (pinID) => {
+    	console.log("removePin has been clicked");
+    	console.log("pinID in DataFactory", pinID);
         return $q((resolve, reject) => {
+        	console.log("in the removePin promise");
             $http.delete(`${fbcreds.databaseURL}/pins/${pinID}.json`)
                 .then((response) => {
                     resolve(response);
@@ -146,7 +151,8 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
         return $q((resolve, reject) => {
             $http.get(`${fbcreds.databaseURL}/boards/${boardId}.json`)
                 .then((boardObj) => {
-                    resolve(boardObj);
+                    let board = boardObj.data;
+                    resolve(board);
                 })
                 .catch((error) => {
                     reject(error);
