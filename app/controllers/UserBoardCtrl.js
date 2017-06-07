@@ -1,4 +1,4 @@
-"use strict";
+ "use strict";
 
 app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
     // let user = AuthFactory.getUser();

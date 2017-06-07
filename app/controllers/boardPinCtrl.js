@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routeParams, $window){
+app.controller("BoardPinCtrl", function($scope, DataFactory, $location, $routeParams, $window){
   $scope.pin = {
   	uid:"",
     url: "",
@@ -26,21 +26,18 @@ console.log("routeParams.pinid is", $routeParams.pinId);
     $scope.boards = data;
   });
 
-  $scope.submitPin = function () {
+  $scope.submitNewPin = function () {
 
     console.log("$scope.pin", $scope.pin);
     DataFactory.makePin($scope.pin)
     .then(()=>{
       console.log("$scope.pin", $scope.pin);
-      $window.location.url= "#!/boards";
+      $window.location.url= "#!/boards/:boardId";
     })
     .then( (data)=>{
-      $location.path("/boards");
-
+      $location.path("/boards/:boardId");
     });
   
   };
 
 });
-
-

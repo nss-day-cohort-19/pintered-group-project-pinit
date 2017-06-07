@@ -1,6 +1,7 @@
 "use strict";
 
-app.controller('editBoardCtrl', function($scope, $routeParams, DataFactory, $location) {
+
+app.controller('EditBoardCtrl', function($scope, $routeParams, DataFactory, $location) {
 
     $scope.board = {
         title: "",
