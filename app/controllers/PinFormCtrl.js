@@ -36,6 +36,7 @@ console.log("routeParams.pinid is", $routeParams.pinId);
     })
     .then( (data)=>{
       $location.path("/boards");
+
     });
   
   };

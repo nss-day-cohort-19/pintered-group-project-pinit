@@ -1,5 +1,6 @@
 "use strict";
 
+
 app.controller("pinCtrl", function($scope, DataFactory, $location, $routeParams, $window){
   $scope.pin = {
     uid:"",
@@ -24,7 +25,6 @@ console.log("routeParams.pinid is", $routeParams.itemId);
     console.log("data", data);
     $scope.boards = data;
   });
-
 
 
 });
