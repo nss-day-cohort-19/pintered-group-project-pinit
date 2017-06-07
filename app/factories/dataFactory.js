@@ -105,7 +105,10 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
     };
 
     const removePin = (pinID) => {
+    	console.log("removePin has been clicked");
+    	console.log("pinID in DataFactory", pinID);
         return $q((resolve, reject) => {
+        	console.log("in the removePin promise");
             $http.delete(`${fbcreds.databaseURL}/pins/${pinID}.json`)
                 .then((response) => {
                     resolve(response);
