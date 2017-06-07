@@ -1,10 +1,10 @@
 "use strict";
 
-app.controller("BoardDetailCtrl", function($scope, DataFactory){
+app.controller("BoardDetailCtrl", function($scope, DataFactory, $routeParams){
 
 	// console.log("$scope", $scope);
-
-	DataFactory.getBoardPins( "-Kly51h5kVTjUMoMLJNX" )
+	console.log("$routeParams", $routeParams.boardId);
+	DataFactory.getBoardPins( $routeParams.boardId )
 	.then( (object) => {
 		$scope.pins = object;
 		$scope.boardName = object[0].boards;
