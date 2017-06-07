@@ -1,7 +1,7 @@
 "use strict";
 
-app.controller('editCtrl', function($scope, $routeParams, DataFactory, $location) {
-  
+app.controller('EditCtrl', function($scope, $routeParams, DataFactory, $location) {
+
   $scope.pin = {
   	uid:"",
     url: "",
@@ -31,3 +31,4 @@ console.log("routeParams.pinid is", $routeParams.pinId);
     console.log("You clicked the edit pin button!");
   };
 });
+
