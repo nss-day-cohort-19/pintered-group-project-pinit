@@ -1,8 +1,8 @@
 "use strict";
 
 app.factory("DataFactory", function($q,$http,fbcreds){
-
-	const deleteBoard = (boardId) => {
+  
+  const deleteBoard = (boardId) => {
         return $q((resolve, reject) => {
             $http.delete(`${fbcreds.databaseURL}/boards/${boardId}.json?`)
             .then( (response) => {
@@ -31,16 +31,16 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     };
 
     const getBoards = () => {
-        let boards = [];
         return $q((resolve, reject) => {
             $http.get(`${fbcreds.databaseURL}/boards.json`)  //?orderBy="uid"&equalTo="${user}"
-            .then((boardsObj) => {
-                let boardsCollection = boardsObj.data;
-                Object.keys(boardsCollection).forEach((key) => {
-                    boardsCollection[key].id = key;
-                    boards.push(boardsCollection[key]);
-                });
-                resolve(boards);
+            .then( (boardsObj) => {
+              let boards = [];
+              let boardCollection = boardsObj.data;
+              Object.keys(boardCollection).forEach((key) => {
+                boardCollection[key].board_id = key;
+                boards.push(boardCollection[key]);
+              })
+              resolve(boards);
             }).catch((error) => {
                 reject(error);
             });
@@ -51,12 +51,8 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     return $q( (resolve, reject) => {
       let object = JSON.stringify(newObj);
       $http.post(`${fbcreds.databaseURL}/pins.json`, object)
-      .then ((pinID) => {
-        resolve(pinID);
-      })
-      .catch( (error) => {
-        reject(error);
-      });
+      .then (resolve)
+      .catch( reject);
     });
   };
 
@@ -80,13 +76,12 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     return $q( (resolve, reject) => {
       $http.get(`${fbcreds.databaseURL}/pins.json`)
       .then( (pinObj) => {
-        
         let itemObj= pinObj.data;
         Object.keys(itemObj).forEach((key)=>{
           itemObj[key].id= key;
           x.push(itemObj[key]);
         });
-        resolve(pinObj.data);
+        resolve(x);
       })
       .catch( (error) => {
         reject(error);
@@ -138,7 +133,6 @@ app.factory("DataFactory", function($q,$http,fbcreds){
 
 
   return {
-    getBoardPins,
     getBoards,
     deleteBoard,
     makePin,
@@ -146,7 +140,8 @@ app.factory("DataFactory", function($q,$http,fbcreds){
     getPins,
     getPin,
     removePin,
-    makeBoard
+    makeBoard,
+    getBoardPins
   };
 
 });
