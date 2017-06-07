@@ -34,7 +34,7 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/userBoards.html",
         controller: "UserBoardCtrl"
     })
-    .when("/boards/myBoard", {
+    .when("/boards/:boardId", {
         templateUrl: "partials/boardDetail.html",
         controller: "BoardDetailCtrl"
     })
