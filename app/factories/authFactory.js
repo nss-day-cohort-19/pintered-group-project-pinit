@@ -30,21 +30,17 @@ app.factory("AuthFactory", function(){
   };
 
     let logoutUser = function(){
-        console.log("logoutUser");
         return firebase.auth().signOut();
     };
 
 
     let isAuthenticated = function (){
-        console.log("AuthFactory: isAuthenticated");
         return new Promise ( (resolve, reject) => {
             firebase.auth().onAuthStateChanged( (user) => {
                 if (user){
-                    console.log("user isAuthenticated", user);
                     userPhoto = user.photoURL;
                     currentUser = user.uid;
                     userDisplayName = user.displayName;
-                    console.log("isAuthenticated user", user.uid);
                     resolve(true);
                 }else {
                     resolve(false);
