@@ -78,7 +78,7 @@ app.config(($routeProvider)=>{
         controller:  "EditCtrl",
         resolve:{isAuth}
     })
-    .when("/:userId/edit",{
+    .when("/editProfile",{
         templateUrl: "partials/profileForm.html",
         controller: "ProfileFormCtrl",
         resolve:{isAuth}
@@ -107,6 +107,12 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/pinForm.html",
         controller: "PinFormCtrl",
         resolve:{isAuth}
+    })
+    .when("/friends", {
+        templateUrl: "friends.html",
+        controller: "FriendCtrl",
+        resolve:{isAuth}
+
     })
     .otherwise("/");
 });

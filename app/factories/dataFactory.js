@@ -6,12 +6,67 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
     	console.log("boardId within deleteBoard", boardId);
         return $q((resolve, reject) => {
             $http.delete(`${fbcreds.databaseURL}/boards/${boardId}.json?`)
-                .then((response) => {
-                    resolve(response);
-                })
-                .catch((response) => {
-                    reject(response);
-                });
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((response) => {
+                reject(response);
+            });
+        });
+    };
+
+    const newProfile = (data) => {
+        let profile = {
+            uid: data.uid,
+            photo: data.photoURL,
+            email: data.email,
+            name: data.displayName
+        };
+        let obj = JSON.stringify(profile);
+        return $q((resolve, reject) => {
+            $http.put(`${fbcreds.databaseURL}/profiles/${data.uid}.json`, obj)
+            .then((response) => {})
+            .catch((error) => {});
+        });
+    };
+
+    const getProfile = (data) => {
+        return $q((resolve, reject) => {
+            $http.get(`${fbcreds.databaseURL}/profiles/${data.uid}.json`)
+            .then((response) => {
+                console.log(response);
+                if(response.data === null) {
+                    newProfile(data);
+                } else {
+                    console.log("already in our base");
+                }
+                resolve(response);
+            }).catch((error) => {
+                console.log(error, "erro");
+            });
+        });
+    };
+
+    const editProfile = (uid, obj) => {
+        return $q( (resolve, reject) => {
+            let newObj = JSON.stringify(obj);
+            $http.patch(`${fbcreds.databaseURL}/profiles/${uid}.json`, newObj)
+            .then((response) => {
+                resolve(response);
+            }).catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+    const getProfiles = () => {
+        return $q((resolve, reject) => {
+            $http.get(`${fbcreds.databaseURL}/profiles.json`)
+            .then((response) => {
+                resolve(response.data);
+            }).catch((error) => {
+                console.log(error);
+            });
         });
     };
 
@@ -171,6 +226,9 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
         makeBoard,
         getBoard,
         editBoard,
-        getBoardPins
+        getBoardPins,
+        getProfile,
+        getProfiles,
+        editProfile
     };
 });

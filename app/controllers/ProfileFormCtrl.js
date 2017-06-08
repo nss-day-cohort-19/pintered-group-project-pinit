@@ -5,14 +5,18 @@ app.controller("ProfileFormCtrl", function($scope, DataFactory, $location, $rout
   let user = AuthFactory.getUser();
   
   $routeParams.userId = user;
+  console.log("user", user);
 
-  $scope.profile = {
-      uid: user,
-      photo: "",
-      email: "",
-      name: ""
-    };
+  DataFactory.getProfile({uid: user})
+  .then( stuff => {
+  	$scope.profile = stuff.data;
+  });
 
-  DataFactory.getProfile(user);
+  $scope.editProfile = () => {
+  	DataFactory.editProfile(user, $scope.profile)
+  	.then( () => {
+  		$location.url("/boards");
+  	});
+  };
 
 });

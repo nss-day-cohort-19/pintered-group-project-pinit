@@ -3,7 +3,7 @@
         <h1>My Boards</h1>
     </div>
     <div class="col-md-1 text-right">
-        <a ng-href="#!/{{uid}}/edit"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a ng-href="#!/editProfile"><span class="glyphicon glyphicon-pencil"></span></a>
     </div>
     <div class="col-md-1">
         <img class="userPhoto" src="{{photo}}">
@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="row col-sm-10 col-sm-offset-1 userBoards">
-    <div ng-repeat="board in userBoards" class="col-sm-4 board">
+    <div ng-repeat="board in userBoards | filter: searchText.search" class="col-sm-4 board">
         <a ng-href="#!/boards/{{board.id}}">
             <div class="board-wrapper">
                 <div class="row">
