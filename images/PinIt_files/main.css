@@ -1,0 +1,68 @@
+body {
+  background-color: #ffffff; }
+
+h1, h2 {
+  text-align: center; }
+
+.smallPin {
+  max-width: 250px; }
+
+.main-container {
+  border: 2px dashed red; }
+
+.container--auth {
+  background-color: white;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 10px;
+  border: 2px solid #ccc; }
+
+.search-bar-spacing {
+  margin-bottom: 20px; }
+
+.title-bar {
+  font-weight: bold; }
+
+.form--demo {
+  background-color: white;
+  border: 2px solid #ccc;
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 10px; }
+
+.PinIt {
+  width: 10%; }
+
+.colorBG {
+  background-color: #85C1F5; }
+
+.userBoards * {
+  padding: 0 0 0 0;
+  margin: 0 0 0 0; }
+
+.userBoards .board {
+  padding: 1%; }
+  .userBoards .board .board-wrapper {
+    margin: 2% 2%;
+    border-radius: 1em;
+    overflow: hidden;
+    width: 100%;
+    background-color: #eee;
+    min-height: 10em; }
+
+.userBoards img {
+  border-radius: 0; }
+
+.editBoard {
+  margin-left: 80%; }
+
+.smallPin {
+  max-width: 250px; }
+
+.newPinBtn {
+  max-width: 35px;
+  margin-left: 80%;
+  padding-right: 0; }
+
+.spacing {
+  margin-top: 5%; }
