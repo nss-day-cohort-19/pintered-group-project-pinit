@@ -1,24 +1,49 @@
-<div class="row">Friends
-    <div ng-repeat="friend in friendList" class="friend">
-        <a ng-href="">
-        <div class="col-sm-2">
-            <img class="userPhoto" src="{{friend.photo}}">
-        {{friend.name}}
-        </div></a>
-        <div class="col-sm-1">
-            <a ng-click="removeFriend(friend.uid)"><span class="glyphicon glyphicon-minus"></span></a>
+<div class="container">Friends
+    <div class="row">
+        <div ng-repeat="friend in friendList" class="">
+            <div class="col-md-4 friend">
+                <div>
+                    <a ng-href="">
+                        <img class="userPhoto" src="{{friend.photo}}">
+                        {{friend.name}}
+                    </a>
+                    <a ng-click="removeFriend(friend.uid)">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="row">Others
-    <div ng-repeat="people in nonFriends" class="non-friend">
-        <a ng-href="">
-        <div class="col-sm-2">
-            <img class="userPhoto" src="{{people.photo}}">
-        </div>
-        <div>{{people.name}}</div></a>
-        <div class="col-sm-1">
-            <a ng-click="addFriend(people.uid)"><span class="glyphicon glyphicon-plus"></span></a>
+<div class="container">Others
+    <div class="row">
+        <div ng-repeat="people in nonFriends" class="">
+            <div class="col-md-4 non-friend">
+                <div>
+                    <a ng-href="">
+                        <img class="userPhoto" src="{{people.photo}}">
+                        {{people.name}}
+                    </a>
+                    <a ng-click="addFriend(people.uid)">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</div><!-- 
+<div class="container">Others
+    <div ng-repeat="people in nonFriends" class="row non-friend">
+        <a ng-href="">
+            <div class="col-sm-2">
+                <img class="userPhoto" src="{{people.photo}}">
+            </div>
+            <div>{{people.name}}</div>
+        </a>
+        <div class="col-sm-1">
+            <a ng-click="addFriend(people.uid)">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>
+</div> -->
