@@ -23,7 +23,9 @@ app.factory("AuthFactory", function(){
             console.log("error:", errorCode, errorMessage);
         });
     };
-
+  let authenticate = (credentials) => {
+    return firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password);
+  };
 
     let logoutUser = function(){
         console.log("logoutUser");
@@ -57,7 +59,7 @@ app.factory("AuthFactory", function(){
     };
 
 
-    return {createUser, loginUser, logoutUser, isAuthenticated, getUser, authWithProvider};
+    return {createUser, loginUser, logoutUser, isAuthenticated, getUser, authWithProvider, authenticate};
 
 
 });
