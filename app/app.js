@@ -117,6 +117,12 @@ app.config(($routeProvider)=>{
         resolve:{isAuth}
 
     })
+    .when("/friends", {
+        templateUrl: "friends.html",
+        controller: "FriendCtrl",
+        resolve:{isAuth}
+
+    })
     .otherwise("/");
 });
 
