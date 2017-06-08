@@ -5,7 +5,9 @@ app.controller("BoardDetailCtrl", function($scope, DataFactory, $routeParams, $l
 	$scope.getBoardPins = () => {
 		DataFactory.getBoardPins($routeParams.boardId)
 		.then( (object) => {
+			console.log("object in getBoardPins", object);
 			$scope.pins = object;
+			$scope.boardId = $routeParams.boardId;
 			$scope.boardName = object[0].boards;
 			console.log("$scope.pins", $scope.pins);
 		});
@@ -27,6 +29,8 @@ app.controller("BoardDetailCtrl", function($scope, DataFactory, $routeParams, $l
         })
         ;
     };
+
+
 
   $scope.getBoardPins();
 
