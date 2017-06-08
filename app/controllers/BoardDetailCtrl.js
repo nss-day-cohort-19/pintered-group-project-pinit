@@ -1,6 +1,8 @@
 "use strict";
 
-app.controller("BoardDetailCtrl", function($scope, DataFactory, $routeParams, $location){
+app.controller("BoardDetailCtrl", function($scope, DataFactory, $routeParams, $location, SearchTermData){
+
+  $scope.searchText = SearchTermData;
 
 	$scope.getBoardPins = () => {
 		DataFactory.getBoardPins($routeParams.boardId)

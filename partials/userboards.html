@@ -10,7 +10,7 @@
     </div>
 </div>
 <div class="row col-sm-10 col-sm-offset-1 userBoards">
-    <div ng-repeat="board in userBoards" class="col-sm-4 board">
+    <div ng-repeat="board in userBoards | filter: searchText.search" class="col-sm-4 board">
         <a ng-href="#!/boards/{{board.id}}">
             <div class="board-wrapper">
                 <div class="row">
