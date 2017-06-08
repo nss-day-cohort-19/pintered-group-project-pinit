@@ -25,6 +25,12 @@ app.config(($routeProvider)=>{
         controller: "AllPinCtrl",
         resolve: {isAuth}
     })
+    .when("/friends", {
+        templateUrl: "partials/friends.html",
+        controller: "FriendCtrl",
+        resolve:{isAuth}
+
+    })
     .when("/login", {
         templateUrl: "partials/login.html",
         controller: "AuthCtrl"
@@ -107,12 +113,6 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/pinForm.html",
         controller: "PinFormCtrl",
         resolve:{isAuth}
-    })
-    .when("/friends", {
-        templateUrl: "friends.html",
-        controller: "FriendCtrl",
-        resolve:{isAuth}
-
     })
     .otherwise("/");
 });
