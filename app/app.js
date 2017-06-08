@@ -24,6 +24,7 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/allPins.html",
         controller: "AllPinCtrl",
         resolve: {isAuth}
+
     })
     .when("/login", {
         templateUrl: "partials/login.html",

@@ -33,9 +33,9 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
     };
 
 
-    const getBoards = () => {
+    const getBoards = ( user ) => {
         return $q((resolve, reject) => {
-            $http.get(`${fbcreds.databaseURL}/boards.json`)  //?orderBy="uid"&equalTo="${user}"
+            $http.get(`${fbcreds.databaseURL}/boards.json?orderBy="uid"&equalTo="${user}"`)
             .then( (boardsObj) => {
               let boards = [];
               let boardCollection = boardsObj.data;
@@ -50,14 +50,14 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
         });
     };
 
-	const makePin = ( newObj ) => {
-    return $q( (resolve, reject) => {
-      let object = JSON.stringify(newObj);
-      $http.post(`${fbcreds.databaseURL}/pins.json`, object)
-      .then (resolve)
-      .catch( reject);
-    });
-  };
+	const makePin = (  newObj ) => {
+        return $q( (resolve, reject) => {
+          let object = JSON.stringify(newObj);
+          $http.post(`${fbcreds.databaseURL}/pins.json`, object)
+          .then (resolve)
+          .catch( reject);
+        });
+    };
   
   const editPin = (pinID, editedObj) => {
     return $q( (resolve, reject) => {

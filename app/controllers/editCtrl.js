@@ -1,10 +1,12 @@
 "use strict";
 
 
-app.controller('EditCtrl', function($scope, $routeParams, DataFactory, $location, $window) {
+app.controller('EditCtrl', function($scope, $routeParams, DataFactory, $location, $window, AuthFactory) {
+
+  let user = AuthFactory.getUser();
   
   $scope.pin = {
-  	uid:"",
+  	uid: user,
     url: "",
     id: "",
     name: "",

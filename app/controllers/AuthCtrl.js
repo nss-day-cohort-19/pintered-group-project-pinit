@@ -39,6 +39,7 @@ app.controller("AuthCtrl", function ($scope, $window, AuthFactory, $location) {
       });
   };
 
+
 let logMeIn = function(loginStuff){
     //console.log("what is loginStuff", loginStuff);
   AuthFactory.authenticate(loginStuff)
@@ -50,6 +51,17 @@ let logMeIn = function(loginStuff){
       console.log("location", $location);
       $scope.$apply();
     });
+};
+  $scope.login = () => {
+    console.log("you clicked login");
+    AuthFactory
+      .loginUser($scope.account)
+      .then(() => {
+        // $scope.isLoggedIn = true;
+        // console.log("UserCtrl: user is loggedIn", $scope.isLoggedIn );
+        // $scope.$apply();
+        $window.location.href = "#!/allPins";
+      });
   };
 
 
