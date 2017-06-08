@@ -27,20 +27,31 @@ app.controller("AuthCtrl", function ($scope, $window, AuthFactory, $location) {
     logout();
   }
 
-  $scope.register = () => {
+  $scope.register = (registerUser) => {
     console.log("you clicked register");
-    AuthFactory.createUser({
-      email: $scope.account.email,
-      password: $scope.account.password
-    })
+    AuthFactory.createUser(registerUser)
       .then((userData) => {
         console.log("UserCtrl newUser:", userData);
-        $scope.login();
+        //$location.path("/alllPins");
+        logMeIn(registerUser);
       }, (error) => {
         console.log("Error creating user:", error);
       });
   };
 
+
+let logMeIn = function(loginStuff){
+    //console.log("what is loginStuff", loginStuff);
+  AuthFactory.authenticate(loginStuff)
+  .then(function(didLogin){
+      $scope.login = {};
+      $scope.register = {};
+      $location.url("/allPins");
+      console.log("user", didLogin, "logged in");
+      console.log("location", $location);
+      $scope.$apply();
+    });
+};
   $scope.login = () => {
     console.log("you clicked login");
     AuthFactory
@@ -52,6 +63,12 @@ app.controller("AuthCtrl", function ($scope, $window, AuthFactory, $location) {
         $window.location.href = "#!/allPins";
       });
   };
+
+
+  $scope.loginUser = function(loginNewUser){
+    logMeIn(loginNewUser);
+  };
+
 
   $scope.loginGoogle = () => {
     console.log("you clicked login with Google");
