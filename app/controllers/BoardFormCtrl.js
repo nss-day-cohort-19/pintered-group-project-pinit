@@ -1,14 +1,17 @@
 "use strict";
 
-app.controller("BoardFormCtrl", function($scope, DataFactory, $location){
+app.controller("BoardFormCtrl", function($scope, DataFactory, $location, AuthFactory){
 
- $scope.board = {
- 	title: "",
- 	description: "",
- 	uid: ""
- };
+	let user = AuthFactory.getUser();
+    $scope.user = user;
 
- 	$scope.makeBoard = () => {
+	 $scope.board = {
+	 	title: "",
+	 	description: "",
+	 	uid: user
+	 };
+
+ 	$scope.makeBoard = ( uid ) => {
  		console.log("$scope.board", $scope.board);
  		DataFactory.makeBoard( $scope.board )
  		.then( (data) => {

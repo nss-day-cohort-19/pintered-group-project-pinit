@@ -1,8 +1,11 @@
 "use strict";
 
-app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routeParams, $window){
+app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routeParams, $window, AuthFactory){
+
+  let user = AuthFactory.getUser();
+
   $scope.pin = {
-  	uid:"",
+  	uid: user,
     url: "",
     name: "",
     description: "",
@@ -10,6 +13,7 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routePar
     board_id:"",
     tags:""
   };
+
   $scope.temp = "";
   if($routeParams.pinId) {
     DataFactory.getPin($routeParams.pinId)
@@ -20,13 +24,13 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routePar
       $scope.pin.id = $routeParams.pinId;
     });
   }
-  function populateBoards() {
-    DataFactory.getBoards()
+  function populateBoards( user ) {
+    DataFactory.getBoards( user )
     .then( (data) => {
       $scope.boards = data;
     });
   }
-  populateBoards();
+  populateBoards( user );
 
   $scope.newBoard = (event) => {
     if(event.keyCode === 13){
@@ -44,15 +48,14 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routePar
       $scope.boardName = boardTitle;
   };
 
-  $scope.submitPin = function () {
+  $scope.submitPin = function (  ) {
 
-    DataFactory.makePin($scope.pin)
+    DataFactory.makePin( $scope.pin)
     .then(()=>{
       $window.location.url= "#!/allPins";
     })
     .then( (data)=>{
       $location.path("/boards");
-
     });
   
   };

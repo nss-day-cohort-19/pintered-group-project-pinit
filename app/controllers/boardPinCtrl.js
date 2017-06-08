@@ -1,8 +1,10 @@
 "use strict";
 
-app.controller("BoardPinCtrl", function($scope, DataFactory, $location, $routeParams, $window){
+app.controller("BoardPinCtrl", function($scope, DataFactory, $location, $routeParams, $window, AuthFactory){
+
+  let user = AuthFactory.getUser();
   $scope.pin = {
-  	uid:"",
+  	uid: user,
     url: "",
     name: "",
     description: "",

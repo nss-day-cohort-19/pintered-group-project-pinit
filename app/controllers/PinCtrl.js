@@ -1,8 +1,11 @@
 "use strict";
 
-app.controller("PinCtrl", function($scope, DataFactory, $location, $routeParams, $window){
+app.controller("PinCtrl", function($scope, DataFactory, $location, $routeParams, $window, AuthFactory){
+
+  let user = AuthFactory.getUser();
+
   $scope.pin = {
-    uid:"",
+    uid: user,
     url: "",
     name: "",
     description: "",
@@ -10,6 +13,7 @@ app.controller("PinCtrl", function($scope, DataFactory, $location, $routeParams,
     board_id:"",
     tags:""
   };
+  
 console.log("routeParams.pinid is", $routeParams.itemId);
   DataFactory.getPin($routeParams.itemId)
   .then( (stuff) => {

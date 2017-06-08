@@ -5,8 +5,8 @@ const app = angular.module("PinItApp", ["ngRoute"]);
 app.config(($routeProvider)=>{
     $routeProvider
     .when("/",{
-        templateUrl: "partials/allPins.html",
-        controller: "AllPinCtrl"
+        templateUrl: "partials/login.html",
+        controller: "AuthCtrl"
     })
     .when("/login", {
         templateUrl: "partials/login.html",
