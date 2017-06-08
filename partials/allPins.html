@@ -1,25 +1,27 @@
-<h1>Explore All The Pins!</h1>
+<h1>Explore All Pins!</h1><br>
 <div class="container">
-  <div class="pinCardSmall" ng-repeat="item in pins | filter: searchText.search">
-    <div class="pinSmall">
-        <a ng-href="#!/{{item.id}}/pin">
-          <img class="smallPinImage" src="{{item.url}}">
-        </a>
-      <div class="pinText">
-        <div>
-          <h3>
-            {{item.name}}
-            <div class="navbar-right">
-              <a ng-href="#!/{{item.id}}/addpin" class="glyphicon glyphicon-plus addPin" aria-hidden="true"></a>
-            </div>
-          </h3>
+  <div class="wrapper">
+    <div class="pinCardSmall" ng-repeat="item in pins | filter: searchText.search">
+      <div class="pinSmall">
+          <a ng-href="#!/{{item.id}}/pin">
+            <img class="smallPinImage" src="{{item.url}}">
+          </a>
+        <div class="pinText">
+          <div>
+            <h3>
+              {{item.name}}
+              <div class="navbar-right">
+                <a ng-href="#!/{{item.id}}/addpin" class="glyphicon glyphicon-plus addPin" aria-hidden="true"></a>
+              </div>
+            </h3>
+          </div>
+          <div>
+              <p>{{item.description}}</p>
+          </div>
         </div>
         <div>
-            <p>{{item.description}}</p>
-        </div>
-      </div>
-      <div>
-        <span class="btn">Tags: {{item.tags}}</span>
+          <span class="btn">Tags: {{item.tags}}</span>
+          </div>
         </div>
       </div>
     </div>

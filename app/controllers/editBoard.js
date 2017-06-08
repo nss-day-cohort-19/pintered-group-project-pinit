@@ -13,9 +13,9 @@ app.controller('EditBoardCtrl', function($scope, $routeParams, DataFactory, $loc
     ///boards/:boardId/edit
     DataFactory.getBoard($routeParams.boardId)
         .then((stuff) => {
-            $scope.board = stuff.data;
-            $scope.board.id = $routeParams.boardId;
-            console.log(stuff);
+            $scope.board = stuff;
+            //$scope.board.id = $routeParams.boardId;
+            //console.log("editBoard control", stuff);
 
         });
 
