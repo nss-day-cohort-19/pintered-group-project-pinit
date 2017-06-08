@@ -1,16 +1,16 @@
-<div class="row">
+<div class="row">Friends
     <div ng-repeat="friend in friendList" class="friend">
         <a ng-href="">
         <div class="col-sm-2">
             <img class="userPhoto" src="{{friend.photo}}">
-        </div>
-        <div>{{friend.name}}</div></a>
+        {{friend.name}}
+        </div></a>
         <div class="col-sm-1">
-            <a ng-click="removeFriend(friend.uid)"><span class="glyphicon glyphicon-plus"></span></a>
+            <a ng-click="removeFriend(friend.uid)"><span class="glyphicon glyphicon-minus"></span></a>
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row">Others
     <div ng-repeat="people in nonFriends" class="non-friend">
         <a ng-href="">
         <div class="col-sm-2">

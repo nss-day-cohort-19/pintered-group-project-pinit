@@ -42,7 +42,17 @@ app.controller('FriendCtrl', function($scope, $routeParams, DataFactory, $locati
     };
 
     $scope.removeFriend = id => {
-
+        for(let f in me.friends) {
+            if(id == me.friends[f]) {
+                me.friends.splice(f, 1);
+            }
+        }
+        DataFactory.editProfile(user, {friends: me.friends})
+        .then( response => {
+            populatePeople();
+        }).catch( error => {
+            console.log(error, "error");
+        });
     };
 
     populatePeople();
