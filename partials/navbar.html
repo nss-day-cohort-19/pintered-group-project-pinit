@@ -20,8 +20,8 @@
       <ul class="nav navbar-nav navbar-right">
       <li><a ng-href="#!/newBoard" ng-show="isLoggedIn">Create Board</a></li>
       <li><a ng-href="#!/newPin" ng-show="isLoggedIn">Create Pin</a></li>
-        <li><a ng-href="#!/allPins">Explore</a></li>
-        <li><a ng-href="#!/boards">Profile</a></li>
+        <li><a ng-show="isLoggedIn" ng-href="#!/allPins">Explore</a></li>
+        <li><a ng-show="isLoggedIn" ng-href="#!/boards">Profile</a></li>
         <li><a ng-href="#!/login" ng-show="!isLoggedIn">Login</a></li>
         <li><a ng-show="isLoggedIn" ng-href="#!/logout">Logout</a></li>
       </ul>
