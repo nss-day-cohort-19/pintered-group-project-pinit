@@ -1,9 +1,8 @@
 "use strict";
 
 //login, logout, register, loginGoogle, clever conditional, authfactory
-app.controller("AuthCtrl", function ($scope, $window, AuthFactory, $location) {
+app.controller("AuthCtrl", function ($scope, $window, AuthFactory, $location, DataFactory) {
 
-  console.log("AuthCtrl is loaded");
   $scope.account = {
     email: "",
     password: ""
@@ -11,14 +10,11 @@ app.controller("AuthCtrl", function ($scope, $window, AuthFactory, $location) {
 //change below with $window.location also, remove scope from logout
 //logout has no scope applied since it is only called internally
   let logout = () => {
-    console.log("logout clicked");
     AuthFactory.logoutUser()
       .then(function (data) {
-        console.log("logged out?", data);
         //location is a service within angular
         $window.location.url = ("#!/login");
       }, function (error) {
-        console.log("error occured on logout");
       });
   };
 
@@ -28,37 +24,31 @@ app.controller("AuthCtrl", function ($scope, $window, AuthFactory, $location) {
   }
 
   $scope.register = (registerUser) => {
-    console.log("you clicked register");
     AuthFactory.createUser(registerUser)
       .then((userData) => {
-        console.log("UserCtrl newUser:", userData);
         //$location.path("/alllPins");
         logMeIn(registerUser);
       }, (error) => {
-        console.log("Error creating user:", error);
       });
   };
 
 
 let logMeIn = function(loginStuff){
-    //console.log("what is loginStuff", loginStuff);
   AuthFactory.authenticate(loginStuff)
   .then(function(didLogin){
       $scope.login = {};
       $scope.register = {};
       $location.url("/allPins");
-      console.log("user", didLogin, "logged in");
-      console.log("location", $location);
+      console.log(didLogin, "didLogin");
+      DataFactory.getProfile(didLogin);
       $scope.$apply();
     });
 };
   $scope.login = () => {
-    console.log("you clicked login");
     AuthFactory
       .loginUser($scope.account)
       .then(() => {
         // $scope.isLoggedIn = true;
-        // console.log("UserCtrl: user is loggedIn", $scope.isLoggedIn );
         // $scope.$apply();
         $window.location.href = "#!/allPins";
       });
@@ -71,17 +61,16 @@ let logMeIn = function(loginStuff){
 
 
   $scope.loginGoogle = () => {
-    console.log("you clicked login with Google");
     AuthFactory.authWithProvider()
       .then(function (result) {
         var user = result.user.uid;
-        console.log("logged in user:", user);
         //Once logged in, go to another view
         $location.path("/allPins");
+        console.log(result, "result");
+        DataFactory.getProfile(result.user);
         $scope.$apply();
       }).catch(function (error) {
         // Handle the Errors.
-        console.log("error with google login", error);
         var errorCode = error.code;
         var errorMessage = error.message;
         // The email of the user's account used.
