@@ -1,4 +1,4 @@
-<h1>Explore All The Pins!</h1>
+<h1>Explore All Pins!</h1><br>
 <div class="container">
 <div class="row">
     <div class="col-md-4" ng-repeat="item in pins | filter: searchText.search">
@@ -15,12 +15,12 @@
         <div class="panel-body">
          <a ng-href="#!/{{item.id}}/pin">  <img class="smallPin" src="{{item.url}}"></a>
 
-            <p>
+            <p class="descripAlign">
                     {{item.description}}
                     </p>
         </div>
         <div class="panel-footer">
-          <span class="btn">{{item.tags}}</span>
+          <span class="btn">Tags: {{item.tags}}</span>
           </div>
         </div>
       </div>
