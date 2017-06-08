@@ -2,11 +2,21 @@
 
 app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory, SearchTermData){
     let user = AuthFactory.getUser();
-    let photo = AuthFactory.getUserPhoto();
-    
-    $scope.searchText = SearchTermData;
+    // let photo = AuthFactory.getUserPhoto();
 
-    $scope.photo = photo;
+    DataFactory.getProfile({uid: user})
+    .then( stuff => {
+        console.log("data", stuff.data);
+        $scope.uid = stuff.data.uid;
+        $scope.photo = stuff.data.photo;
+    });
+    // console.log("userData", userData.$$state.value);
+    // $scope.uid = userData.uid;
+    // $scope.searchText = SearchTermData;
+    // $scope.photo = userData.photo;
+
+    console.log("$scope.uid", $scope.uid);
+    console.log("$scope.photo", $scope.photo);
     // user = "";
     console.log("user", user);
 
