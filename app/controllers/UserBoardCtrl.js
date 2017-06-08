@@ -1,8 +1,10 @@
  "use strict";
 
-app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
+app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory, SearchTermData){
     let user = AuthFactory.getUser();
     let photo = AuthFactory.getUserPhoto();
+    
+    $scope.searchText = SearchTermData;
 
     $scope.photo = photo;
     // user = "";

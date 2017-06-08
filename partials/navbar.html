@@ -10,12 +10,12 @@
       </button>
       <a class="navbar-brand" href="#"><img class="PinIt" src="http://2.bp.blogspot.com/-Kt70O7voGv4/U9mz7M58eiI/AAAAAAAADEc/0cBmOvQQhXA/s1600/Logo+Pin_it.png"></a>
     </div>
-
-      <div class="input-group col-xs-4 col-xs-offset-2" ng-show="isLoggedIn">
-    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-    <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1" ng-model="searchText.search">
-  </div>
-
+    <div class="input-group col-xs-4 col-xs-offset-2" ng-show="isLoggedIn">
+      <span class="input-group-addon" id="basic-addon1">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </span>
+      <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1" ng-model="searchText.search">
+    </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
       <li><a ng-href="#!/newBoard" ng-show="isLoggedIn">Create Board</a></li>
