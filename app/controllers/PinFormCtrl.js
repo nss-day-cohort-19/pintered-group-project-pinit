@@ -35,7 +35,7 @@ app.controller("PinFormCtrl", function($scope, DataFactory, $location, $routePar
   $scope.newBoard = (event) => {
     if(event.keyCode === 13){
       $scope.boardName = $scope.temp;
-      DataFactory.makeBoard({title: $scope.temp})
+      DataFactory.makeBoard({title: $scope.temp, uid: user})
       .then( (response) => {
         $scope.pin.board_id = response.data.name;
         populateBoards();

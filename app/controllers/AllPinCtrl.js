@@ -1,8 +1,10 @@
 "use strict";
 
-app.controller("AllPinCtrl", function($scope, DataFactory){
+app.controller("AllPinCtrl", function($scope, DataFactory, SearchTermData){
 
-$scope.getPins= function(){
+    $scope.searchText = SearchTermData;
+
+    $scope.getPins= function(){
         DataFactory.getPins()
             .then(function(data){
             let x= [];
