@@ -16,11 +16,13 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
     };
 
     const newProfile = (data) => {
+        let friends = ["none"];
         let profile = {
             uid: data.uid,
             photo: data.photoURL,
             email: data.email,
-            name: data.displayName
+            name: data.displayName,
+            friends: friends
         };
         let obj = JSON.stringify(profile);
         return $q((resolve, reject) => {

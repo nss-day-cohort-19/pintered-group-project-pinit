@@ -89,6 +89,18 @@ h1, h2 {
   margin-top: 5%;
 }
 
+.friend div {
+  border: 2px solid #85C1F5;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.non-friend div {
+  border: 2px solid #CC353A;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
 .mycontainer {
     position: relative;
     width: 50%;
