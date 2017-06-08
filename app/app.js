@@ -24,7 +24,6 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/allPins.html",
         controller: "AllPinCtrl",
         resolve: {isAuth}
-
     })
     .when("/login", {
         templateUrl: "partials/login.html",
@@ -43,79 +42,71 @@ app.config(($routeProvider)=>{
         templateUrl: "partials/pinForm.html",
         controller: "PinFormCtrl",
         resolve:{isAuth}
-
     })
     .when("/newBoard",{
         templateUrl: "partials/boardForm.html",
         controller: "BoardFormCtrl",       
         resolve:{isAuth}
-
     })
     .when("/boards",{
         templateUrl: "partials/userBoards.html",
         controller: "UserBoardCtrl",     
         resolve:{isAuth}
-
     })
     .when("/boards/:boardId", {
         templateUrl: "partials/boardDetail.html",
         controller: "BoardDetailCtrl",        
         resolve:{isAuth}
-
     })
     .when("/boards/:boardId/edit",{
         templateUrl: "partials/boardForm",
         controller: "EditBoardCtrl",
         resolve:{isAuth}
-
     })
     .when("/boards/:boardId/:pinId",{
         templateUrl: "partials/boardDetail.html",
         controller: "BoardDetailCtrl",
         resolve:{isAuth}
-
     })   
      .when("/newPinBoard", {
         templateUrl: "partials/newPin.html",
         controller: "BoardPinCtrl",
         resolve:{isAuth}
-
     })
     .when("/boards/:boardId/:pinId/edit",{
         templateUrl: "partials/pinForm.html",
         controller:  "EditCtrl",
         resolve:{isAuth}
-
+    })
+    .when("/:userId/edit",{
+        templateUrl: "partials/profileForm.html",
+        controller: "ProfileFormCtrl",
+        resolve:{isAuth}
     })
     .when("/:pinId/edit",{
         templateUrl: "partials/pinForm.html",
         controller: "EditCtrl",
         resolve:{isAuth}
-
     })
     .when("/:pinId",{
         templateUrl: "partials/pin.html",
         controller: "PinCtrl",
         resolve:{isAuth}
-
     })
     .when("/:pinId/addpin",{
         templateUrl: "partials/pinForm.html",
         controller: "PinFormCtrl",
         resolve:{isAuth}
-
     })
     .when("/:itemId/pin",{
         templateUrl: "partials/pin.html",
         controller: "PinCtrl",
         resolve:{isAuth}
-
     })
     .when("/:pinId/addpin",{
         templateUrl: "partials/pinForm.html",
         controller: "PinFormCtrl",
         resolve:{isAuth}
-
     })
     .otherwise("/");
 });
