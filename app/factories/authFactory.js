@@ -4,7 +4,9 @@ app.factory("AuthFactory", function(){
 
     //currentUser, createUser, loginUser, logoutUser, isAuthenticated getUser
 
-    let currentUser = null;
+    let currentUser = null,
+        userPhoto = "",
+        userDisplayName = "";
 
     let createUser = function(userObj){
         return firebase.auth().createUserWithEmailAndPassword(userObj.email, userObj.password)
@@ -23,7 +25,9 @@ app.factory("AuthFactory", function(){
             console.log("error:", errorCode, errorMessage);
         });
     };
-
+  let authenticate = (credentials) => {
+    return firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password);
+  };
 
     let logoutUser = function(){
         console.log("logoutUser");
@@ -36,8 +40,11 @@ app.factory("AuthFactory", function(){
         return new Promise ( (resolve, reject) => {
             firebase.auth().onAuthStateChanged( (user) => {
                 if (user){
+                    console.log("user isAuthenticated", user);
+                    userPhoto = user.photoURL;
                     currentUser = user.uid;
-                    console.log("user", user.uid);
+                    userDisplayName = user.displayName;
+                    console.log("isAuthenticated user", user.uid);
                     resolve(true);
                 }else {
                     resolve(false);
@@ -50,6 +57,14 @@ app.factory("AuthFactory", function(){
         return currentUser;
     };
 
+    let getUserPhoto = () => {
+        return userPhoto;
+    };
+
+    let getUserDisplayName = () => {
+        return userDisplayName;
+    };
+
     let provider = new firebase.auth.GoogleAuthProvider();
 
     let authWithProvider= function(){
@@ -57,7 +72,8 @@ app.factory("AuthFactory", function(){
     };
 
 
-    return {createUser, loginUser, logoutUser, isAuthenticated, getUser, authWithProvider};
+
+    return {createUser, loginUser, logoutUser, isAuthenticated, getUser, authWithProvider, getUserPhoto, getUserDisplayName, authenticate};
 
 
 });

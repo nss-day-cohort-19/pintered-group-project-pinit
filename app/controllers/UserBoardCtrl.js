@@ -1,18 +1,22 @@
  "use strict";
 
 app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
-    // let user = AuthFactory.getUser();
-    // user = "";
+    let user = AuthFactory.getUser();
+    let photo = AuthFactory.getUserPhoto();
 
-    $scope.getBoards = () => {
+    $scope.photo = photo;
+    // user = "";
+    console.log("user", user);
+
+    $scope.getBoards = ( uid ) => {
         
         function sortPins(x) {
-            DataFactory.getBoardPins($scope.userBoards[x].board_id)
+            DataFactory.getBoardPins($scope.userBoards[x].id)
             .then( (pins) => {
                 console.log(pins, "pins");
                 if(pins.length !== 0) {
                     for(let y in $scope.userBoards) {
-                        if($scope.userBoards[y].board_id === pins[0].board_id) {
+                        if($scope.userBoards[y].id === pins[0].board_id) {
                             $scope.userBoards[y].pins = pins;
                         } 
                     }
@@ -21,7 +25,7 @@ app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
             });
         }
         
-        DataFactory.getBoards()
+        DataFactory.getBoards( uid )
         .then( (boards) => {
             $scope.userBoards = boards;
             for(let x in $scope.userBoards){
@@ -37,5 +41,5 @@ app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
         });
     };
 
-    $scope.getBoards();
+    $scope.getBoards( user );
 });
