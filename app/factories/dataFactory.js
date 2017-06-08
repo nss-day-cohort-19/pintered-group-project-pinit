@@ -40,6 +40,7 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
                 } else {
                     console.log("already in our base");
                 }
+                resolve(response);
             }).catch((error) => {
                 console.log(error, "erro");
             });
