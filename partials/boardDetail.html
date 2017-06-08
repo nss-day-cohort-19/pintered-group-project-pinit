@@ -1,13 +1,45 @@
+<h1>{{boardName}}BOARDNAME</h1>
+<div class="container">
+  <div class="boardStuff">
+    <button class="glyphicon glyphicon-remove" ng-click="removeBoard()" aria-hidden="true"></button>
+    <a ng-href="#!/newPin"><img class="smallPinImage" src="https://d30y9cdsu7xlg0.cloudfront.net/png/32881-200.png"></a>
+  </div>
+  <div class="pinCardSmall" ng-repeat="item in pins | filter: searchText.search">
+    <div class="pinSmall">
+        <a ng-href="#!/{{item.id}}/pin">
+          <img class="smallPinImage" src="{{item.url}}">
+        </a>
+      <div class="pinText">
+        <div>
+          <h3>
+            {{item.name}}
+            <div class="navbar-right">
+              <a ng-href="#!/{{item.id}}/addpin" class="glyphicon glyphicon-plus addPin" aria-hidden="true"></a>
+            </div>
+          </h3>
+        </div>
+        <div>
+            <p>{{item.description}}</p>
+        </div>
+      </div>
+      <div>
+        <span class="btn">Tags: {{item.tags}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
 <div class="container">
   <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">
-            {{boardName}}
             <div class="btn-group pull-right navbar-right">
               <button class="glyphicon glyphicon-remove" ng-click="removeBoard()" aria-hidden="true"></button>
             </div>
-            <a ng-href="#!/newPin"><img class="newPinBtn" src="https://d30y9cdsu7xlg0.cloudfront.net/png/32881-200.png"></a>
+            <a ng-href="#!/newPin"><img class="smallPinImage" src="https://d30y9cdsu7xlg0.cloudfront.net/png/32881-200.png"></a>
           </h3>
         </div>
     </div>
@@ -38,3 +70,4 @@
     </div>
   </div>
 </div>
+ -->
