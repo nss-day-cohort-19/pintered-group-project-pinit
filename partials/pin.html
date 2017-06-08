@@ -1,19 +1,18 @@
-   <div class="col-lg-4 center" >
-     <div class="panel panel-default"> 
-        <div class="panel-heading">
-
-          <h3 class="panel-title">
+<div class="row">
+  <div class="col-md-4 col-md-offset-4" >
+    <div class="pinCardBig"> 
+      <div class="pinBig">
+        <img class="bigPinImage" src="{{pin.url}}"></a>
+        <div class="pinText">
+          <h3 class="">
             {{pin.name}}
           </h3>
+          <p>{{pin.description}}</p>
         </div>
-        <div class="panel-body">
-         <img class="largePin" src="{{pin.url}}"></a>
-            <p class="descripAlign">
-                    {{pin.description}}
-                    </p>
+        <div class="">
+          <span>Tags: {{pin.tags}}</span>
         </div>
-        <div class="panel-footer">
-          <span class="btn">Tags: {{pin.tags}}</span>
-          </div>
-</div>
+      </div>
+    </div>
+  </div>
 </div>
