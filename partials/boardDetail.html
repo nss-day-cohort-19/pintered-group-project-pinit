@@ -1,14 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            {{boardName}}
+    <div class="col-md-12">
+        <div>
+          <h1><div class="btn-group pull-right navbar-right"><a ng-href="#!/newPin"><img class="newPinBtn" src="https://d30y9cdsu7xlg0.cloudfront.net/png/32881-200.png"></a></div>
+            {{title}}
             <div class="btn-group pull-right navbar-right">
-              <button class="glyphicon glyphicon-remove" ng-click="removeBoard()" aria-hidden="true"></button>
+                <a ng-href="#!/boards/{{boardId}}/edit"><button class="glyphicon glyphicon-pencil"></button></a>
+                <button class="glyphicon glyphicon-remove" ng-click="removeBoard()" aria-hidden="true"></button>
+             
             </div>
-            <a ng-href="#!/newPin"><img class="newPinBtn" src="https://d30y9cdsu7xlg0.cloudfront.net/png/32881-200.png"></a>
-          </h3>
+          </h1>
         </div>
     </div>
   </div>
