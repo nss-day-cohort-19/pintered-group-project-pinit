@@ -5,7 +5,7 @@ app.controller('NavCtrl', function ($scope, AuthFactory, $window, SearchTermData
   // Log Button Function
 
   $scope.isLoggedIn = false;
-  $scope.searchText= SearchTermData;
+  $scope.searchText = SearchTermData;
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
