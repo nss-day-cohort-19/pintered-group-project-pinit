@@ -3,7 +3,7 @@
 app.controller("UserBoardCtrl", function($scope, DataFactory, AuthFactory){
     let user = AuthFactory.getUser();
     let photo = AuthFactory.getUserPhoto();
-
+    $scope.uid = user;
     $scope.photo = photo;
     // user = "";
     console.log("user", user);
