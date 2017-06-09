@@ -8,19 +8,17 @@
 </div>
 <div class="row col-sm-10 col-sm-offset-1 userBoards">
     <div ng-repeat="board in userBoards | filter: searchText.search" class="col-sm-4 board">
-        <a ng-href="#!/boards/{{board.id}}">
-            <div class="board-wrapper">
-                <div class="row">
-                    <div ng-repeat="item in board.pins">
-                        <img class="poster col-sm-4" src="{{item.url}}">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                    <h2 class="text-capitalize">{{board.title}}</h2>
-                    </div>
+        <div class="board-wrapper">
+            <div class="row">
+                <div ng-repeat="item in board.pins">
+                    <img class="poster col-sm-4" src="{{item.url}}">
                 </div>
             </div>
-        </a>
+            <div class="row">
+                <div class="col-md-12">
+                <h2 class="text-capitalize">{{board.title}}</h2>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
