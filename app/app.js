@@ -31,6 +31,12 @@ app.config(($routeProvider)=>{
         resolve:{isAuth}
 
     })
+    .when("/friends/:friendName/:friendId", {
+        templateUrl: "partials/friendBoard.html",
+        controller: "FriendBoardCtrl",
+        resolve:{isAuth}
+        
+    })
     .when("/login", {
         templateUrl: "partials/login.html",
         controller: "AuthCtrl"

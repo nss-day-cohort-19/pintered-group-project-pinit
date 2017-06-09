@@ -3,7 +3,7 @@
         <div ng-repeat="friend in friendList" class="">
             <div class="col-md-4 friend">
                 <div>
-                    <a ng-href="">
+                    <a ng-href="#!/friends/{{friend.name}}/{{friend.uid}}">
                         <img class="userPhoto" src="{{friend.photo}}">
                         {{friend.name}}
                     </a>
@@ -20,10 +20,8 @@
         <div ng-repeat="people in nonFriends" class="">
             <div class="col-md-4 non-friend">
                 <div>
-                    <a ng-href="">
-                        <img class="userPhoto" src="{{people.photo}}">
-                        {{people.name}}
-                    </a>
+                    <img class="userPhoto" src="{{people.photo}}">
+                    {{people.name}}
                     <a ng-click="addFriend(people.uid)">
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>

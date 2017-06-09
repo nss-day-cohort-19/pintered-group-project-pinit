@@ -15,6 +15,23 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
         });
     };
 
+    const addFriend = (user, friend) => {
+        let obj = JSON.stringify(" ");
+        return $q((resolve, reject) => {
+            $http.put(`${fbcreds.databaseURL}/profiles/${user}/friends/${friend}.json`, obj)
+            .then( resolve )
+            .catch( reject );
+        });
+    };
+
+    const removeFriend = (user, enemy) => {
+        return $q((resolve, reject) => {
+            $http.delete(`${fbcreds.databaseURL}/profiles/${user}/friends/${enemy}.json`)
+            .then( resolve )
+            .catch( reject );
+        });
+    };
+
     const newProfile = (data) => {
         let friends = ["none"];
         let profile = {
@@ -22,7 +39,6 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
             photo: data.photoURL,
             email: data.email,
             name: data.displayName,
-            friends: friends
         };
         let obj = JSON.stringify(profile);
         return $q((resolve, reject) => {
@@ -231,6 +247,8 @@ app.factory("DataFactory", function($q, $http, fbcreds) {
         getBoardPins,
         getProfile,
         getProfiles,
-        editProfile
+        editProfile,
+        addFriend,
+        removeFriend
     };
 });
